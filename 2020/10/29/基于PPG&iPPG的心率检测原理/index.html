@@ -11,21 +11,21 @@
   <meta name="description" content="引言本人所在实验室研究组是从事视频医学方向研究，目前主要针对非接触式的视频脉搏波提取技术被称作图像光电容积脉搏波描记法**(image Photoplethysmography ,iPPG)。具体为从人面部或者指尖等皮肤区域提取由于心脏跳动引起的颜色变化信号**BVP(Blood Volume Pulse,血液容积脉搏波)。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于PPG&amp;iPPG的心率检测原理----持续更新中">
-<meta property="og:url" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:url" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="Techyu&#39;s blog">
 <meta property="og:description" content="引言本人所在实验室研究组是从事视频医学方向研究，目前主要针对非接触式的视频脉搏波提取技术被称作图像光电容积脉搏波描记法**(image Photoplethysmography ,iPPG)。具体为从人面部或者指尖等皮肤区域提取由于心脏跳动引起的颜色变化信号**BVP(Blood Volume Pulse,血液容积脉搏波)。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg">
-<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E6%8C%87%E5%A4%B9%E9%80%8F%E5%B0%84%E5%BC%8F.png">
-<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E5%8E%9F%E7%90%86.png">
-<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E5%8E%9F%E5%A7%8B%E8%84%89%E6%90%8F%E6%B3%A2%E4%BF%A1%E5%8F%B7.png">
-<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E6%BB%A4%E6%B3%A2%E5%A4%84%E7%90%86%E7%9A%84%E8%84%89%E6%90%8F%E6%B3%A2.png">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/%E6%8C%87%E5%A4%B9%E9%80%8F%E5%B0%84%E5%BC%8F.png">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/ppg%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/%E5%8E%9F%E5%A7%8B%E8%84%89%E6%90%8F%E6%B3%A2%E4%BF%A1%E5%8F%B7.png">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/%E6%BB%A4%E6%B3%A2%E5%A4%84%E7%90%86%E7%9A%84%E8%84%89%E6%90%8F%E6%B3%A2.png">
 <meta property="article:published_time" content="2020-10-29T13:15:05.000Z">
 <meta property="article:modified_time" content="2020-10-29T14:29:41.625Z">
 <meta property="article:author" content="Techyu">
 <meta property="article:tag" content="PPG，iPPG，心率，深度学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg">
+<meta name="twitter:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Techyu&#39;s blog" type="application/atom+xml">
   
@@ -153,7 +153,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-基于PPG的无袖带血压检测技术" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-基于PPG&amp;iPPG的心率检测原理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -165,7 +165,7 @@
   
 
         
-        <a href="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
+        <a href="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/" class="archive-article-date">
   	<time datetime="2020-10-29T13:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
 </a>
         
@@ -184,7 +184,7 @@
 <blockquote>
 <p>1.==反射式==光电心率传感器<br>2.==透射式==光电心率传感器</p>
 </blockquote>
-<p><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg" alt="反射式ppg：发射和接收在同一侧">    <img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E6%8C%87%E5%A4%B9%E9%80%8F%E5%B0%84%E5%BC%8F.png" alt="透射式ppg：发射和接收分别在皮肤两侧"></p>
+<p><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg" alt="反射式ppg：发射和接收在同一侧">    <img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/%E6%8C%87%E5%A4%B9%E9%80%8F%E5%B0%84%E5%BC%8F.png" alt="透射式ppg：发射和接收分别在皮肤两侧"></p>
 <p><strong>根据入射光线颜色可分为：</strong></p>
 <blockquote>
 <p>1.==绿色==光源</p>
@@ -194,8 +194,8 @@
 <p>以及在同一块传感器上布置不同颜色的光源用以采集不同的生理信号。</p>
 <hr>
 <p>例如根据相关论文测量心率时可以选择绿色光源，提取出的脉搏波信噪比时最高的，这也就是许多运动手环和智能手表在测量心率时，底部会透出绿色光的原因（但是经过我们实测至少是在指尖的iPPG信号提取时，红色通道的信噪比会比绿色通道好很多，这个我后续会做实验进行验证）。<br>除此以外还可以根据<strong>红色通道</strong>和<strong>近红外通道</strong>提取的波形，进行血氧饱和度SpO2的计算，因为血液中的氧合血红蛋白浓度和还原血红蛋白浓度在红光和近红外段光谱有着明显<strong>不同的吸收比</strong>，因此可以直接利用两个通道采集的BVP信号差异，进行SpO2的估计。</p>
-<h2 id="PPG传感器原理"><a href="#PPG传感器原理" class="headerlink" title="PPG传感器原理"></a>PPG传感器原理</h2><p>==为什么皮肤反射的光信号变化可以进行心率的计算呢？==<br><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E5%8E%9F%E7%90%86.png" alt="生物信号-&gt;光信号-&gt;电信号"><br>当光照经过皮肤组织然后再反射到接收端的光敏传感器时，获得的光信号强度是会有一定变化的。除去人体<strong>肌肉、骨骼、静脉和其他组织</strong>等等对光的<strong>吸收基本恒定</strong>的区域，流经皮肤下的<strong>动脉血管对光的吸收或者衰减却是时刻变化的</strong>。由于心脏的跳动规律的将血液泵进动脉，<strong>动脉的血液容积也是随之改变</strong>的，因此会造成光敏传感器端接收的光信号变化，而这种变化就可以间接用来表示血液容积的改变。当把这种光信号的变化转化成对应电信号的改变时，那些吸收不变的区域分为直流DC信号，而由于心跳血液容积变化产生的信号称之为<strong>交流AC</strong>信号。提取光敏二极管产生的AC信号，进而就可以根据得到的BVP信号进行诸如心率等心血管参数的估计。</p>
-<h2 id="心率估计原理"><a href="#心率估计原理" class="headerlink" title="心率估计原理"></a>心率估计原理</h2><p><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E5%8E%9F%E5%A7%8B%E8%84%89%E6%90%8F%E6%B3%A2%E4%BF%A1%E5%8F%B7.png" alt="原始脉搏波信号"><br>由上图可以看出原始的脉搏波信号是有很多<strong>高频噪声</strong>和<strong>基线漂移</strong>情况的，所以需要先对原始脉搏进行一系列滤波和降噪处理，转换为相对标准的脉搏信号在进行心率估计的算法。<br><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E6%BB%A4%E6%B3%A2%E5%A4%84%E7%90%86%E7%9A%84%E8%84%89%E6%90%8F%E6%B3%A2.png" alt="滤波处理的脉搏波"><br>上图可以看出，滤波有点过度把原始脉搏波的<strong>重搏波特征</strong>都过滤没了如果在对脉搏波的一些细节特征进行分析时可能就会影响精度。但是在这里的心率计算并不影响，因为心率只关注特定时间段内的波形峰值个数或者频率值。</p>
+<h2 id="PPG传感器原理"><a href="#PPG传感器原理" class="headerlink" title="PPG传感器原理"></a>PPG传感器原理</h2><p>==为什么皮肤反射的光信号变化可以进行心率的计算呢？==<br><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/ppg%E5%8E%9F%E7%90%86.png" alt="生物信号-&gt;光信号-&gt;电信号"><br>当光照经过皮肤组织然后再反射到接收端的光敏传感器时，获得的光信号强度是会有一定变化的。除去人体<strong>肌肉、骨骼、静脉和其他组织</strong>等等对光的<strong>吸收基本恒定</strong>的区域，流经皮肤下的<strong>动脉血管对光的吸收或者衰减却是时刻变化的</strong>。由于心脏的跳动规律的将血液泵进动脉，<strong>动脉的血液容积也是随之改变</strong>的，因此会造成光敏传感器端接收的光信号变化，而这种变化就可以间接用来表示血液容积的改变。当把这种光信号的变化转化成对应电信号的改变时，那些吸收不变的区域分为直流DC信号，而由于心跳血液容积变化产生的信号称之为<strong>交流AC</strong>信号。提取光敏二极管产生的AC信号，进而就可以根据得到的BVP信号进行诸如心率等心血管参数的估计。</p>
+<h2 id="心率估计原理"><a href="#心率估计原理" class="headerlink" title="心率估计原理"></a>心率估计原理</h2><p><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/%E5%8E%9F%E5%A7%8B%E8%84%89%E6%90%8F%E6%B3%A2%E4%BF%A1%E5%8F%B7.png" alt="原始脉搏波信号"><br>由上图可以看出原始的脉搏波信号是有很多<strong>高频噪声</strong>和<strong>基线漂移</strong>情况的，所以需要先对原始脉搏进行一系列滤波和降噪处理，转换为相对标准的脉搏信号在进行心率估计的算法。<br><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/%E6%BB%A4%E6%B3%A2%E5%A4%84%E7%90%86%E7%9A%84%E8%84%89%E6%90%8F%E6%B3%A2.png" alt="滤波处理的脉搏波"><br>上图可以看出，滤波有点过度把原始脉搏波的<strong>重搏波特征</strong>都过滤没了如果在对脉搏波的一些细节特征进行分析时可能就会影响精度。但是在这里的心率计算并不影响，因为心率只关注特定时间段内的波形峰值个数或者频率值。</p>
 <h3 id="时域分析-峰值检测"><a href="#时域分析-峰值检测" class="headerlink" title="时域分析-峰值检测"></a>时域分析-峰值检测</h3><p>时域分析故名思意就是研究脉搏波的时域特征，通过计算特定时间内的<strong>峰值个数</strong>进行心率估计。公式如下：</p>
 <blockquote>
 <p>==HeartRate =60/duration*No.of peaks      //其中duration是特定时间的长度==</p>
@@ -296,7 +296,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/" alt="微信分享二维码">
     </div>
 </div>
 
