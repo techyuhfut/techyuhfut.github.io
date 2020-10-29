@@ -6,18 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Techyu&#39;s blog</title>
+  <title>基于PPG&amp;iPPG的心率检测原理----持续更新中 | Techyu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="程序员日常分享，学习、刷题、Java、深度学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Techyu&#39;s blog">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+  <meta name="description" content="引言本人所在实验室研究组是从事视频医学方向研究，目前主要针对非接触式的视频脉搏波提取技术被称作图像光电容积脉搏波描记法**(image Photoplethysmography ,iPPG)。具体为从人面部或者指尖等皮肤区域提取由于心脏跳动引起的颜色变化信号**BVP(Blood Volume Pulse,血液容积脉搏波)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于PPG&amp;iPPG的心率检测原理----持续更新中">
+<meta property="og:url" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="Techyu&#39;s blog">
-<meta property="og:description" content="程序员日常分享，学习、刷题、Java、深度学习">
+<meta property="og:description" content="引言本人所在实验室研究组是从事视频医学方向研究，目前主要针对非接触式的视频脉搏波提取技术被称作图像光电容积脉搏波描记法**(image Photoplethysmography ,iPPG)。具体为从人面部或者指尖等皮肤区域提取由于心脏跳动引起的颜色变化信号**BVP(Blood Volume Pulse,血液容积脉搏波)。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E6%8C%87%E5%A4%B9%E9%80%8F%E5%B0%84%E5%BC%8F.png">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E5%8E%9F%E5%A7%8B%E8%84%89%E6%90%8F%E6%B3%A2%E4%BF%A1%E5%8F%B7.png">
+<meta property="og:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E6%BB%A4%E6%B3%A2%E5%A4%84%E7%90%86%E7%9A%84%E8%84%89%E6%90%8F%E6%B3%A2.png">
+<meta property="article:published_time" content="2020-10-29T13:15:05.000Z">
+<meta property="article:modified_time" content="2020-10-29T14:29:41.625Z">
 <meta property="article:author" content="Techyu">
-<meta property="article:tag" content="Java、LeetCode、数据结构、机器学习">
+<meta property="article:tag" content="PPG，iPPG，心率，深度学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Techyu&#39;s blog" type="application/atom+xml">
   
@@ -145,36 +153,88 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-基于PPG的无袖带血压检测技术" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2020-10-29T13:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/">基于PPG&amp;iPPG的心率检测原理----持续更新中</a>
+    <h1 class="article-title" itemprop="name">
+      基于PPG&amp;iPPG的心率检测原理----持续更新中
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/" class="archive-article-date">
+  	<time datetime="2020-10-29T13:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>本人所在实验室研究组是从事视频医学方向研究，目前主要针对非接触式的视频脉搏波提取技术被称作图像光电容积脉搏波描记法**(image Photoplethysmography ,iPPG)<strong>。具体为从人面部或者指尖等皮肤区域提取由于心脏跳动引起的</strong>颜色变化信号**BVP(Blood Volume Pulse,血液容积脉搏波)。</p>
+<a id="more"></a>
+
+<hr>
+<p>这种微弱的颜色变化虽然不能被人眼观察到，但是可以被相机采集再通过图像处理的方法进行放大得到。但是由于非接触式的相机采集会受到的环境干扰要比指夹式的PPG传感器信号质量差很多，如<strong>灯光干扰、运动干扰</strong>等，获取的信号处理难度要比普通的(Photoplethysmography,PPG信号难上许多。所以如何获取提取高质量的BVP信号的一系列去噪算法就成为了研究重点。根据获取的稳定的BVP信号就可以对许多心血管参数进行估计，如<strong>心率、血氧饱和度、心律不齐、房颤甚至是血压</strong>。<br>由于研一主要负责组内的安卓App开发工作，虽然大致的处理流程也是了解的，但是还没有认真总结过，下面我就对相关的技术和背景进行介绍，如有疏漏还请大家批评指正。</p>
+<h1 id="PPG技术介绍"><a href="#PPG技术介绍" class="headerlink" title="PPG技术介绍"></a>PPG技术介绍</h1><p><strong>光电容积脉搏波描记法</strong>所使用的PPG技术是指利用光学心率传感器，通过传感器上的发光<strong>LED发射特定颜色波长</strong>的光入射进人体特定部位的表皮皮肤，再根据<strong>光敏传感器接收</strong>对应的反射光或入射光来达到检测脉搏信号的目的。</p>
+<h2 id="ppg传感器分类"><a href="#ppg传感器分类" class="headerlink" title="ppg传感器分类"></a>ppg传感器分类</h2><p><strong>根据接收光的方式可分为：</strong></p>
+<blockquote>
+<p>1.==反射式==光电心率传感器<br>2.==透射式==光电心率传感器</p>
+</blockquote>
+<p><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E4%BC%A0%E6%84%9F%E5%99%A8.jpg" alt="反射式ppg：发射和接收在同一侧">    <img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E6%8C%87%E5%A4%B9%E9%80%8F%E5%B0%84%E5%BC%8F.png" alt="透射式ppg：发射和接收分别在皮肤两侧"></p>
+<p><strong>根据入射光线颜色可分为：</strong></p>
+<blockquote>
+<p>1.==绿色==光源</p>
+<p>2.==红色==光源</p>
+<p>3.==红外==光源</p>
+</blockquote>
+<p>以及在同一块传感器上布置不同颜色的光源用以采集不同的生理信号。</p>
+<hr>
+<p>例如根据相关论文测量心率时可以选择绿色光源，提取出的脉搏波信噪比时最高的，这也就是许多运动手环和智能手表在测量心率时，底部会透出绿色光的原因（但是经过我们实测至少是在指尖的iPPG信号提取时，红色通道的信噪比会比绿色通道好很多，这个我后续会做实验进行验证）。<br>除此以外还可以根据<strong>红色通道</strong>和<strong>近红外通道</strong>提取的波形，进行血氧饱和度SpO2的计算，因为血液中的氧合血红蛋白浓度和还原血红蛋白浓度在红光和近红外段光谱有着明显<strong>不同的吸收比</strong>，因此可以直接利用两个通道采集的BVP信号差异，进行SpO2的估计。</p>
+<h2 id="PPG传感器原理"><a href="#PPG传感器原理" class="headerlink" title="PPG传感器原理"></a>PPG传感器原理</h2><p>==为什么皮肤反射的光信号变化可以进行心率的计算呢？==<br><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/ppg%E5%8E%9F%E7%90%86.png" alt="生物信号-&gt;光信号-&gt;电信号"><br>当光照经过皮肤组织然后再反射到接收端的光敏传感器时，获得的光信号强度是会有一定变化的。除去人体<strong>肌肉、骨骼、静脉和其他组织</strong>等等对光的<strong>吸收基本恒定</strong>的区域，流经皮肤下的<strong>动脉血管对光的吸收或者衰减却是时刻变化的</strong>。由于心脏的跳动规律的将血液泵进动脉，<strong>动脉的血液容积也是随之改变</strong>的，因此会造成光敏传感器端接收的光信号变化，而这种变化就可以间接用来表示血液容积的改变。当把这种光信号的变化转化成对应电信号的改变时，那些吸收不变的区域分为直流DC信号，而由于心跳血液容积变化产生的信号称之为<strong>交流AC</strong>信号。提取光敏二极管产生的AC信号，进而就可以根据得到的BVP信号进行诸如心率等心血管参数的估计。</p>
+<h2 id="心率估计原理"><a href="#心率估计原理" class="headerlink" title="心率估计原理"></a>心率估计原理</h2><p><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E5%8E%9F%E5%A7%8B%E8%84%89%E6%90%8F%E6%B3%A2%E4%BF%A1%E5%8F%B7.png" alt="原始脉搏波信号"><br>由上图可以看出原始的脉搏波信号是有很多<strong>高频噪声</strong>和<strong>基线漂移</strong>情况的，所以需要先对原始脉搏进行一系列滤波和降噪处理，转换为相对标准的脉搏信号在进行心率估计的算法。<br><img src="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/%E6%BB%A4%E6%B3%A2%E5%A4%84%E7%90%86%E7%9A%84%E8%84%89%E6%90%8F%E6%B3%A2.png" alt="滤波处理的脉搏波"><br>上图可以看出，滤波有点过度把原始脉搏波的<strong>重搏波特征</strong>都过滤没了如果在对脉搏波的一些细节特征进行分析时可能就会影响精度。但是在这里的心率计算并不影响，因为心率只关注特定时间段内的波形峰值个数或者频率值。</p>
+<h3 id="时域分析-峰值检测"><a href="#时域分析-峰值检测" class="headerlink" title="时域分析-峰值检测"></a>时域分析-峰值检测</h3><p>时域分析故名思意就是研究脉搏波的时域特征，通过计算特定时间内的<strong>峰值个数</strong>进行心率估计。公式如下：</p>
+<blockquote>
+<p>==HeartRate =60/duration*No.of peaks      //其中duration是特定时间的长度==</p>
+</blockquote>
+<h3 id="频域分析-FFT变换"><a href="#频域分析-FFT变换" class="headerlink" title="频域分析-FFT变换"></a>频域分析-FFT变换</h3><p>频域分析就是将获得的脉搏波波形数据进行快速傅里叶的变化，对得到的频率freq乘以60就可以得到心率数值。需要注意的是，当脉搏波<strong>数组点数长度过短</strong>，根据奈奎斯特定理可能导致<strong>频率分辨率不足</strong>进而导致心率变化区间过大问题，其可以通过在数组后端<strong>补0</strong>来提升频率分辨率。具体公式如下：</p>
+<blockquote>
+<p>==HearRate = freq*60     //freq是没秒钟变化的次数，乘以60是因为心率是每分钟跳动的次数beats per minute==</p>
+</blockquote>
+<hr>
+<h1 id="iPPG技术简介"><a href="#iPPG技术简介" class="headerlink" title="iPPG技术简介"></a>iPPG技术简介</h1><p>iPPG技术是基于PPG而产生的，其主要的不同是：相较于PPG技术<strong>需要的专门的采集传感器</strong>，iPPG可以直接利用现如今大量智能手机和监控<strong>设备的摄像头获取</strong>视频信息提取画面内人体表皮颜色变化(一般为面部或者指尖皮肤)，而不需要专用的传感器设备，也无需始终接触才可以进行测量。但是非接触式的代价也是显而易见的，iPPG的信号质量除非视频录制环境特别完美，在真实场景下容易受到<strong>光照</strong>和用户的<strong>运动干扰</strong>等影响。因此，也有很多学者针对不同的场景下进行算法优化，提升脉搏波提取的鲁棒性。但是目前为止，真实复杂场景下的脉搏波采集还是没有达到如今商用人脸识别的效果。截至目前为止，考虑到准确性等方面iPPG技术还没有特别好的商业前景。相信等到iPPG的鲁棒性可以达到人脸识别的地步，一定会催生大量的产品形态极大的方便我们生活和健康检测。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -186,145 +246,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/29/%E5%9F%BA%E4%BA%8EPPG%E7%9A%84%E6%97%A0%E8%A2%96%E5%B8%A6%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/28/Win10-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%92%8C%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="archive-article-date">
-  	<time datetime="2020-10-28T13:12:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/28/Win10-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%92%8C%E5%BF%AB%E6%8D%B7%E9%94%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Win10 常用命令和快捷键</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/28/Win10-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%92%8C%E5%BF%AB%E6%8D%B7%E9%94%AE/">Win10 常用命令和快捷键</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">命令行</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">快捷键</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Win10</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/27/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-Yilia%20%E4%B8%BB%E9%A2%98%E5%A4%B4%E5%83%8F%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/" class="archive-article-date">
-  	<time datetime="2020-10-27T03:33:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/27/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA-Yilia%20%E4%B8%BB%E9%A2%98%E5%A4%B4%E5%83%8F%E9%85%8D%E7%BD%AE%E5%A4%B1%E8%B4%A5/">Hexo博客搭建 - Yilia主题头像配置失败</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Yilia,主题,头像]</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-10-26T13:58:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">新手向</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -347,8 +368,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
