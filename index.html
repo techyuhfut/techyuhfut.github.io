@@ -147,6 +147,124 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-LeetCode刷题 463.岛屿的周长 Island Perimeter Java" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/">LeetCode刷题 463. Island Perimeter 岛屿的周长 Java</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/" class="archive-article-date">
+  	<time datetime="2020-10-30T09:12:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题目介绍"><a href="#题目介绍" class="headerlink" title="题目介绍"></a>题目介绍</h1><p>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/island-perimeter">https://leetcode-cn.com/problems/island-perimeter</a></p>
+<p>给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。</p>
+<p>网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。</p>
+<p>岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。<br>示例图片如下：<br><img src="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/%E5%B2%9B%E5%B1%BF%E7%A4%BA%E4%BE%8B%E5%9B%BE%E7%89%87.jpg" alt="岛屿示例图片"></p>
+<hr>
+<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>二维数组代替一个地图区域，0表示水域1表示小岛，所有水域都是联通集。</p>
+<blockquote>
+<p>题目的要求主要就是实现对二维数组中上下左右相邻元素数值的判断，因为一旦相邻就会造成两者结合部分的消失。</p>
+</blockquote>
+<hr>
+<h1 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h1><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>从图中看到所有的小岛，或者说所有的相邻元素之间存在的状态只可能是四种情况。</p>
+<ol>
+<li><p>单独的一个单位为1的小岛，那么他会贡献小岛总的长度为4的四个边长<br><img src="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/%E6%B2%A1%E6%9C%89%E7%9B%B8%E9%82%BB%E8%BE%B9.png" alt="没有相邻边"></p>
+</li>
+<li><p>当前小岛只有一个边会与另外一个小岛相接，那么当前的小岛会贡献其余的三个边作为总的边长<br><img src="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/%E4%B8%80%E8%BE%B9%E7%9B%B8%E8%BF%9E.png" alt="一边相连"></p>
+</li>
+<li><p>当前小岛有两个方向与其他小岛相接，会贡献其余的两边给整个小岛的周长<br><img src="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/%E4%B8%A4%E8%BE%B9%E7%9B%B8%E8%BF%9E.png" alt="两边相连"></p>
+</li>
+<li><p>当前小岛有三个方向与其他小岛相接，剩余的一条边会作为整个小岛的周长<br><img src="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/%E4%B8%89%E8%BE%B9%E7%9B%B8%E8%BF%9E.png" alt="三边相连"></p>
+</li>
+<li><p>当前小岛所有相邻方向全与别的小岛相接，成为一个内陆部分不贡献自己的任何边<br><img src="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/%E5%9B%9B%E8%BE%B9%E7%9B%B8%E8%BF%9E.png" alt="四边相连"></p>
+</li>
+</ol>
+<hr>
+<p>因此只要遍历数组中所有种类小岛的个数，根据各种类会贡献的周长就可以算出小岛周长总和。</p>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = grid.length;</span><br><span class="line">        <span class="keyword">int</span> m = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> [] dx=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>&#125;;<span class="comment">//位移数组</span></span><br><span class="line">        <span class="keyword">int</span> [] dy=&#123;<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>&#125;;<span class="comment">//分别访问当前元素下，右，上，左位置</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;<span class="comment">//不是小岛元素直接continue</span></span><br><span class="line">                &#125;<span class="comment">//底下是小岛单位</span></span><br><span class="line">                <span class="keyword">int</span> count=<span class="number">0</span><span class="comment">//count记录当前小岛上下左右四个位置是否有相邻</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;dx.length;k++)&#123;<span class="comment">//循环判断上下左右元素值</span></span><br><span class="line">                    <span class="keyword">int</span> nx = i+dx[k];</span><br><span class="line">                    <span class="keyword">int</span> ny = j+dy[k];</span><br><span class="line">                    <span class="keyword">if</span>(nx&gt;=<span class="number">0</span>&amp;&amp;nx&lt;n&amp;&amp;ny&gt;=<span class="number">0</span>&amp;&amp;ny&lt;m&amp;&amp;grid[nx][ny]==<span class="number">1</span>)</span><br><span class="line">                        count++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">switch</span>(count)&#123;<span class="comment">//当前单位小岛相邻位置判断结束，根据count计算最终结果</span></span><br><span class="line">                    <span class="keyword">case</span> <span class="number">0</span> :ans+=<span class="number">4</span>;<span class="keyword">break</span>; </span><br><span class="line">                    <span class="keyword">case</span> <span class="number">1</span> :ans+=<span class="number">3</span>;<span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="number">2</span> :ans+=<span class="number">2</span>;<span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="number">3</span> :ans+=<span class="number">1</span>;<span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="number">4</span> :ans=ans;<span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h1><h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
+<li><strong>==解法一存在的问题==</strong><br>思考上一种的解法可以发现，每次遍历的时候是会出现**==重复判断==**的。也就是在上一行当中已经判断过元素a与下一行的元素b相接，但是到下一行元素b时又会判断是否与上一行的元素a相接。</li>
+</ul>
+<hr>
+<ul>
+<li><strong>==解决办法==</strong><br>从第一个元素开始判断是否是岛屿元素，是则直接默认贡献四边的长度==count+=4==，然后再向右和向下判断是否和其他元素相邻，若相邻一条边则消失两条边的周长==count-=2==（两条边重合并且都不再是岛屿的边缘）。等于遍历到底部元素时不会在继续判断上方已经判断过的元素。</li>
+</ul>
+<h2 id="具体代码-1"><a href="#具体代码-1" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = grid.length;</span><br><span class="line">        <span class="keyword">int</span> m = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//记录总的小岛边数</span></span><br><span class="line">        <span class="keyword">int</span> [] dx=&#123;<span class="number">0</span>,<span class="number">1</span>&#125;;<span class="comment">//位移数组，向右享下</span></span><br><span class="line">        <span class="keyword">int</span> [] dy=&#123;<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;<span class="comment">//不是小岛元素直接continue</span></span><br><span class="line">                &#125;</span><br><span class="line">                count+=<span class="number">4</span>;<span class="comment">//时元素默认直接时单独的，再继续向右向下判断</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;dx.length;k++)&#123;</span><br><span class="line">                    <span class="keyword">int</span> nx = i+dx[k];</span><br><span class="line">                    <span class="keyword">int</span> ny = j+dy[k];</span><br><span class="line">                    <span class="keyword">if</span>(nx&lt;n&amp;&amp;ny&lt;m&amp;&amp;grid[nx][ny]==<span class="number">1</span>)<span class="comment">//判断相邻右和下是否是小岛元素</span></span><br><span class="line">                        count-=<span class="number">2</span>;<span class="comment">//相邻一条边，减去最终的两条边</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="一点思考"><a href="#一点思考" class="headerlink" title="一点思考"></a>一点思考</h1><p>因为题目当前限定的是一个相连再一起的岛屿，不会存在类似与两个单独空心湖泊存在的情况。那么就一定确保了岛屿在四个面方向上对立面的个数总是相同的。比如说岛屿的左面有三个面就一定确保了右面也只有三个面，能否只通过检测两个对立面中的其中一个方向获取总的岛屿周长呢？大家一起交流讨论把。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-基于PPG&amp;iPPG的心率检测原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -572,6 +690,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Win10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
