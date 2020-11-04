@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://example.com/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/%E4%B8%89%E8%BE%B9%E7%9B%B8%E8%BF%9E.png">
 <meta property="og:image" content="http://example.com/2020/10/30/LeetCode%E5%88%B7%E9%A2%98%20463.%E5%B2%9B%E5%B1%BF%E7%9A%84%E5%91%A8%E9%95%BF%20Island%20Perimeter%20Java/%E5%9B%9B%E8%BE%B9%E7%9B%B8%E8%BF%9E.png">
 <meta property="article:published_time" content="2020-10-30T12:12:32.000Z">
-<meta property="article:modified_time" content="2020-10-30T12:17:47.029Z">
+<meta property="article:modified_time" content="2020-10-30T12:21:14.275Z">
 <meta property="article:author" content="Techyu">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="算法">
@@ -226,7 +226,7 @@
 <h2 id="具体代码-1"><a href="#具体代码-1" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = grid.length;</span><br><span class="line">        <span class="keyword">int</span> m = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;<span class="comment">//记录总的小岛边数</span></span><br><span class="line">        <span class="keyword">int</span> [] dx=&#123;<span class="number">0</span>,<span class="number">1</span>&#125;;<span class="comment">//位移数组，向右享下</span></span><br><span class="line">        <span class="keyword">int</span> [] dy=&#123;<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span>;<span class="comment">//不是小岛元素直接continue</span></span><br><span class="line">                &#125;</span><br><span class="line">                count+=<span class="number">4</span>;<span class="comment">//时元素默认直接时单独的，再继续向右向下判断</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;dx.length;k++)&#123;</span><br><span class="line">                    <span class="keyword">int</span> nx = i+dx[k];</span><br><span class="line">                    <span class="keyword">int</span> ny = j+dy[k];</span><br><span class="line">                    <span class="keyword">if</span>(nx&lt;n&amp;&amp;ny&lt;m&amp;&amp;grid[nx][ny]==<span class="number">1</span>)<span class="comment">//判断相邻右和下是否是小岛元素</span></span><br><span class="line">                        count-=<span class="number">2</span>;<span class="comment">//相邻一条边，减去最终的两条边</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="一点思考"><a href="#一点思考" class="headerlink" title="一点思考"></a>一点思考</h1><pre><code>因为题目当前限定的是一个相连再一起的岛屿，不会存在类似与两个单独空心湖泊存在的情况。那么就一定确保了岛屿在四个面方向上**==对立面==**的**==个数总是相同的==**。比如说岛屿的左面有三个面就一定确保了右面也只有三个面，能否只通过检测两个对立面中的其中一个方向获取总的岛屿周长呢？大家一起交流讨论把。</code></pre>
+<h1 id="一点思考"><a href="#一点思考" class="headerlink" title="一点思考"></a>一点思考</h1><p>因为题目当前限定的是一个相连再一起的岛屿，不会存在类似与两个单独空心湖泊存在的情况。那么就一定确保了岛屿在四个面方向上<strong>对立面</strong>的<strong>个数总是相同的</strong>。比如说岛屿的左面有三个面就一定确保了右面也只有三个面，能否只通过检测两个对立面中的其中一个方向获取总的岛屿周长呢？大家一起交流讨论把。</p>
 
       
 
@@ -338,6 +338,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/11/04/LeeetCode%E5%88%B7%E9%A2%98%2013.%20Roman%20to%20Integer%20%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E5%9E%8B%20Java/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          LeeetCode刷题 13. Roman to Integer 罗马数字转整型 Java
+        
+      </div>
+    </a>
   
   
     <a href="/2020/10/29/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E5%BF%83%E7%8E%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
