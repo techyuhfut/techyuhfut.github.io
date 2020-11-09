@@ -6,18 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 随笔 | Techyu&#39;s blog</title>
+  <title>Android 最简单的安卓沉浸式状态栏实现 Java | Techyu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="程序员日常分享，学习、刷题、Java、深度学习">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Techyu&#39;s blog">
-<meta property="og:url" content="http://example.com/tags/%E9%9A%8F%E7%AC%94/index.html">
+  <meta name="description" content="沉浸式状态栏介绍沉浸式状态栏式Android 4.4 引入的一个机制，可以将手机顶端的状态栏颜色融入当前app的界面中，而不至于和app的界面以及配色有着明显的割裂。在如今手机全面屏化的促进下，并且由于安卓手机的碎片化各家的状态栏背景颜色可能还不一定一致。在不进行沉浸式状态栏适配的app在大屏占比的手机上就会显得异常突兀，下面我就介绍一种最快速方便的将当前app和顶部状态栏实现沉浸式体验的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 最简单的安卓沉浸式状态栏实现 Java">
+<meta property="og:url" content="http://example.com/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/index.html">
 <meta property="og:site_name" content="Techyu&#39;s blog">
-<meta property="og:description" content="程序员日常分享，学习、刷题、Java、深度学习">
+<meta property="og:description" content="沉浸式状态栏介绍沉浸式状态栏式Android 4.4 引入的一个机制，可以将手机顶端的状态栏颜色融入当前app的界面中，而不至于和app的界面以及配色有着明显的割裂。在如今手机全面屏化的促进下，并且由于安卓手机的碎片化各家的状态栏背景颜色可能还不一定一致。在不进行沉浸式状态栏适配的app在大屏占比的手机上就会显得异常突兀，下面我就介绍一种最快速方便的将当前app和顶部状态栏实现沉浸式体验的方法。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="http://example.com/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/xml%E7%95%8C%E9%9D%A2.png">
+<meta property="article:published_time" content="2020-11-09T08:26:32.000Z">
+<meta property="article:modified_time" content="2020-11-09T09:33:38.438Z">
 <meta property="article:author" content="Techyu">
-<meta property="article:tag" content="Java、LeetCode、数据结构、机器学习">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="开发">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
   
     <link rel="alternative" href="/atom.xml" title="Techyu&#39;s blog" type="application/atom+xml">
   
@@ -145,64 +152,200 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Android 最简单的安卓沉浸式状态栏实现 Java" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-10-26T13:58:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
+    <h1 class="article-title" itemprop="name">
+      Android 最简单的安卓沉浸式状态栏实现 Java
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/" class="archive-article-date">
+  	<time datetime="2020-11-09T08:26:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="沉浸式状态栏介绍"><a href="#沉浸式状态栏介绍" class="headerlink" title="沉浸式状态栏介绍"></a>沉浸式状态栏介绍</h1><p>沉浸式状态栏式Android 4.4 引入的一个机制，可以将手机顶端的状态栏颜色融入当前app的界面中，而不至于和app的界面以及配色有着明显的割裂。<br><img src="/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="沉浸式状态栏示意图"><br>在如今手机全面屏化的促进下，并且由于安卓手机的碎片化各家的状态栏背景颜色可能还不一定一致。在不进行沉浸式状态栏适配的app在大屏占比的手机上就会显得异常突兀，下面我就介绍一种最快速方便的将当前app和顶部状态栏实现沉浸式体验的方法。</p>
+<a id="more"></a>
+
+<hr>
+<h1 id="沉浸式状态栏实现"><a href="#沉浸式状态栏实现" class="headerlink" title="沉浸式状态栏实现"></a>沉浸式状态栏实现</h1><p>首先需要明确使用下面的方法需要安卓4.4 KITKAT以上的系统，具体实现仅仅需要<strong>两步</strong>就可以实现。</p>
+<hr>
+<h2 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h2><p>首先我们需要在想要实现沉浸式状态栏的app界面的页面布局的<strong>xml代码</strong>中加入以下两句代码：</p>
+<blockquote>
+<p>android:fitsSystemWindows=”true”<br>android:clipToPadding=”true”</p>
+</blockquote>
+<p>具体代码的添加位置为当前Activity的布局xml文件的除了根布局以外的，最上方和状态栏接触的布局位置。下面我以自己登录界面的代码进行演示，大家只需要关注上方有关渐变背景的相对布局代码，我这个界面主要是一个顶部的切换栏，中间有登录和注册的切换TextView，具体的登录和注册页面通过inflate的方式添加进底部的content。</p>
+<p><img src="/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/xml%E7%95%8C%E9%9D%A2.png" alt="xml界面"></p>
+<p><strong>xml代码如下</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">&quot;#ffffff&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span> &gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">&quot;@+id/title_back&quot;</span></span></span><br><span class="line">       android:fitsSystemWindows=&quot;true&quot; &lt;!--渐变代码添加位置--&gt;</span><br><span class="line">       android:clipToPadding=&quot;true&quot;</span><br><span class="line">       android:layout_width=&quot;match_parent&quot;</span><br><span class="line">       android:layout_height=&quot;100dp&quot;</span><br><span class="line">       android:background=&quot;@drawable/login_title_background&quot;</span><br><span class="line">       android:layout_weight=&quot;1.0&quot;</span><br><span class="line">       android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line">   <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/title_switch&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;50dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/ly_login&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;50dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">&quot;1.0&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:gravity</span>=<span class="string">&quot;center_horizontal|center_vertical&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_login&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:text</span>=<span class="string">&quot;登录&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:textStyle</span>=<span class="string">&quot;bold&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:textColor</span>=<span class="string">&quot;#333333&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">&quot;@+id/login_bar&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;70dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;4dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:background</span>=<span class="string">&quot;#FFBF54&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">&quot;@+id/ly_regist&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;50dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">&quot;1.0&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:gravity</span>=<span class="string">&quot;center_horizontal|center_vertical&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_regist&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:clickable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:text</span>=<span class="string">&quot;注册&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:textStyle</span>=<span class="string">&quot;bold&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:textColor</span>=<span class="string">&quot;#CCCCCC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">&quot;@+id/regist_bar&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;70dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;4dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:background</span>=<span class="string">&quot;#FFFFFF&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;40dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">&quot;1.0&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:gravity</span>=<span class="string">&quot;center_horizontal|center_vertical&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/login_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;100dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#FFFFFF&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">&quot;3.0&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h2><p>第二步需要在对应的Activity的Java代码中,onCreate()在setContentView之后添加以下的语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(Build.VERSION.SDK_INT&gt;=Build.VERSION_CODES.KITKAT) &#123;</span><br><span class="line">	getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>具体的位置下面以我自己的项目部分文件做展示，具体如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">     requestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">     <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">     setContentView(R.layout.activity_login);</span><br><span class="line">     <span class="keyword">if</span>(Build.VERSION.SDK_INT&gt;=Build.VERSION_CODES.KITKAT) &#123;<span class="comment">//沉浸渐变代码添加位置，判断当前sdk版本</span></span><br><span class="line">         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</span><br><span class="line">     &#125;</span><br><span class="line">     login_view= LayoutInflater.from(<span class="keyword">this</span>).inflate(R.layout.login_tab, <span class="keyword">null</span>);</span><br><span class="line">     regist_view= LayoutInflater.from(<span class="keyword">this</span>).inflate(R.layout.regist_tab, <span class="keyword">null</span>);</span><br><span class="line">     switch_content = (LinearLayout) findViewById(R.id.login_content);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>至此两步已经完成，重新编译就可以实现上述效果。需要强调的是当前的Activity的style设置的 NoActionBar 。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">新手向</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">开发</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基于PPG&amp;iPPG的血压检测技术----持续更新中</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -225,9 +368,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
