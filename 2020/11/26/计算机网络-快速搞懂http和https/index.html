@@ -6,23 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>基于PPG&amp;iPPG的血压检测技术----持续更新中 | Techyu&#39;s blog</title>
+  <title>计算机网络 快速搞懂http和https | Techyu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="引言之前我们已经介绍了PPG&amp;iPPG技术来获取&#x3D;&#x3D;血液容积脉搏波(Blood Volume Pulse,BVP)&#x3D;&#x3D;的技术原理，以及针对PPG信号进而进行心率计算或者说估计的原理。其实BVP信号中除了含有频率或者峰值的信息之外，还含有很多其他的生理信息值得我们去挖掘。目前一个新的研究领域就是如何利用PPG信号，对用户的血压进行估计，也许血压估计的精度还达不到临床要求，但是即使能根据PPG">
+  <meta name="description" content="在浏览器的地址栏中，在浏览网站时我们偶尔会注意到不同网站的开头存在http：&#x2F;&#x2F;**或https：&#x2F;&#x2F;**两种他们之间有着什么区别？ HTTPS 是支持加密的 HTTP。两种协议的唯一区别是HTTPS 使用 TLS（SSL）来加密普通的 HTTP 请求和响应。因此，HTTPS 比 HTTP 安全得多。那么HTTP协议又是什么呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于PPG&amp;iPPG的血压检测技术----持续更新中">
-<meta property="og:url" content="http://example.com/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/index.html">
+<meta property="og:title" content="计算机网络 快速搞懂http和https">
+<meta property="og:url" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/index.html">
 <meta property="og:site_name" content="Techyu&#39;s blog">
-<meta property="og:description" content="引言之前我们已经介绍了PPG&amp;iPPG技术来获取&#x3D;&#x3D;血液容积脉搏波(Blood Volume Pulse,BVP)&#x3D;&#x3D;的技术原理，以及针对PPG信号进而进行心率计算或者说估计的原理。其实BVP信号中除了含有频率或者峰值的信息之外，还含有很多其他的生理信息值得我们去挖掘。目前一个新的研究领域就是如何利用PPG信号，对用户的血压进行估计，也许血压估计的精度还达不到临床要求，但是即使能根据PPG">
+<meta property="og:description" content="在浏览器的地址栏中，在浏览网站时我们偶尔会注意到不同网站的开头存在http：&#x2F;&#x2F;**或https：&#x2F;&#x2F;**两种他们之间有着什么区别？ HTTPS 是支持加密的 HTTP。两种协议的唯一区别是HTTPS 使用 TLS（SSL）来加密普通的 HTTP 请求和响应。因此，HTTPS 比 HTTP 安全得多。那么HTTP协议又是什么呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/%E7%A4%BA%E6%B3%A2%E6%B3%95%E5%8C%85%E7%BB%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
-<meta property="og:image" content="http://example.com/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/PEP.png">
-<meta property="article:published_time" content="2020-11-04T13:15:05.000Z">
-<meta property="article:modified_time" content="2020-11-04T13:59:04.439Z">
+<meta property="og:image" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/title.png">
+<meta property="og:image" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/URIURL.png">
+<meta property="og:image" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/https.gif">
+<meta property="article:published_time" content="2020-11-26T12:11:41.000Z">
+<meta property="article:modified_time" content="2020-11-26T14:03:05.048Z">
 <meta property="article:author" content="Techyu">
-<meta property="article:tag" content="PPG，iPPG，血压，深度学习">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="HTTPS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/%E7%A4%BA%E6%B3%A2%E6%B3%95%E5%8C%85%E7%BB%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta name="twitter:image" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/title.png">
   
     <link rel="alternative" href="/atom.xml" title="Techyu&#39;s blog" type="application/atom+xml">
   
@@ -150,72 +153,69 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-基于PPG&amp;iPPG的血压检测技术----持续更新中" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-计算机网络-快速搞懂http和https" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      基于PPG&amp;iPPG的血压检测技术----持续更新中
+      计算机网络 快速搞懂http和https
     </h1>
   
 
         
-        <a href="/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/" class="archive-article-date">
-  	<time datetime="2020-11-04T13:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
+        <a href="/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/" class="archive-article-date">
+  	<time datetime="2020-11-26T12:11:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>之前我们已经介绍了<strong>PPG&amp;iPPG技术</strong>来获取==血液容积脉搏波(Blood Volume Pulse,BVP)==的技术原理，以及针对PPG信号进而进行心率计算或者说估计的原理。其实BVP信号中除了含有频率或者峰值的信息之外，还含有很多其他的生理信息值得我们去挖掘。目前一个新的研究领域就是如何利用PPG信号，对用户的<strong>血压进行估计</strong>，也许<strong>血压估计</strong>的精度还达不到临床要求，但是即使能根据PPG信号实现高血压和非<strong>高血压的分类</strong>都有着巨大的应用场景。</p>
+        <p><img src="/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/title.png" alt="title pic"></p>
+<p>在浏览器的地址栏中，在浏览网站时我们偶尔会注意到不同网站的开头存在<strong>http：//**或</strong>https：//**两种他们之间有着什么区别？</p>
+<p>HTTPS 是支持加密的 HTTP。两种协议的唯一区别是HTTPS 使用 TLS（SSL）来加密普通的 HTTP 请求和响应。因此，HTTPS 比 HTTP 安全得多。那么HTTP协议又是什么呢？</p>
 <a id="more"></a>
 
 <hr>
-<h1 id="传统血压检测方法"><a href="#传统血压检测方法" class="headerlink" title="传统血压检测方法"></a>传统血压检测方法</h1><h2 id="有创式血压检测"><a href="#有创式血压检测" class="headerlink" title="有创式血压检测"></a>有创式血压检测</h2><p>在危重病人如休克病人、一些心脏手术和其他重大手术时，需要对血压进行实时变化的<strong>连续监测</strong>，需要采用有创血压监测技术来实现。<br><strong>其测量原理</strong>：首先将导管通过<strong>穿刺</strong>，置于被测部位的血管内，导管的外端直接与<strong>压力传感器</strong>相连接，由于流体具有压力传递作用，血管内的压力将通过导管内的液体<strong>传递到外部的压力传感器</strong>上，从而可获得血管内==实时压力变化==的动态波形，通过特定的计算方法，可获得被测部位血管的收缩压（SBP）、舒张压（DBP）和平均动脉压（ABP）。</p>
-<ul>
-<li><p><strong>优点</strong>： 能够及时地反映血压的真实变化、能够实现长时间的==连续监测==</p>
-</li>
-<li><p><strong>缺点</strong>： <strong>有创伤性、易发生二次感染和其他临床问题</strong></p>
-<h2 id="无创式血压检测"><a href="#无创式血压检测" class="headerlink" title="无创式血压检测"></a>无创式血压检测</h2><p>通过间接的方法来获取动脉内压力，检测精度稍低但是简便无创是临床上常采用的方法。</p>
-</li>
-<li><p><strong>优点</strong>：操作方便，使用门槛低</p>
-</li>
-<li><p><strong>缺点</strong>：受到干扰因素比较多，准确度不如有创的精确</p>
-</li>
-</ul>
-<h3 id="柯氏音法（听诊法）"><a href="#柯氏音法（听诊法）" class="headerlink" title="柯氏音法（听诊法）"></a>柯氏音法（听诊法）</h3><p>最早由俄国学者柯洛特柯夫在1905年发现，用臂带绑扎上臂并加压，将肱动脉血管压瘪，然后再减压，随着外压力的降低，从臂带内的<strong>听诊器</strong>中可以听到血流重新冲开血管后发出与脉搏同步的摩擦、冲击音。由于这一发现的重要性，这种<strong>摩擦、冲击音</strong>就被命名为柯氏音。<br><strong>检测原理</strong>:先用一连接水银柱的袖带将被测者的臂膀扎住，关闭阀门，然后对袖带打气，再适当松开阀门进行放气。放气期间，将听诊器听筒放在袖带与臂膀之间动脉附近，听脉搏音。开始时因为袖带压力大将脉搏阻断，几乎没有声音或声音很小；随着袖带压力下降，脉搏音逐渐增大，在一个点上会感到声音明显增大，到最大后在逐渐减小，最后声音变调、消失。脉搏音明显增大时刻所对应的水银柱高度为收缩压，而脉搏音从大到小开始变调时刻对应为舒张压。<br>上世纪70-80年代，随着电子技术的发展，出现了电子柯氏音法的血压计，主要改变是充气和放气的气泵采用电子控制，听音装置采用麦克风MIC进行拾音自动判断，大大降低了医生的工作。</p>
-<h3 id="示波法（震动法）"><a href="#示波法（震动法）" class="headerlink" title="示波法（震动法）"></a>示波法（震动法）</h3><p>示波法是现代电子血压计所常采用方法，其主要特征是包含有个显示和计算终端和一个带导管的充气袖带。示波法或者说振动法血压测量中仍采用<strong>充气袖带</strong>来阻断动脉血流，不同的是袖带内装置有<strong>压力传感器</strong>可以检测到袖带内的<strong>压力变化或者说震动情况</strong>，由于动脉血流的脉动，在袖带内可以检测出动脉血流产生的气压震动。</p>
-<p><img src="/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/%E7%A4%BA%E6%B3%A2%E6%B3%95%E5%8C%85%E7%BB%9C%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="示波法包络示意图"></p>
-<p><strong>检测原理</strong>：袖带充气到高于收缩压20mmHg左右，然后使袖带慢慢放气。当袖带内压力高于收缩压时，<strong>动脉阻断</strong>，由于近端血液脉动，出现==幅度较小的振动波==。放气过程中，当袖带振动幅度<strong>突然增大（第一个拐点）</strong>时压力等于==收缩压（<strong>SBP</strong>）==，随着袖带内压力不断降低，振动幅度不断增大，当袖带压力为某一值时，振动波<strong>幅度达到最大</strong>，此时的袖带内压力即为==平均动脉压（<strong>ABP</strong>）==。随后，随着袖带压力的下降，振动波幅度不断减小，达到示波法<strong>包络的第二个拐点</strong>时即为==舒张压（<strong>DBP</strong>）==，振动波幅度降到较低值。</p>
-<h1 id="基于PPG信号的血压检测方法"><a href="#基于PPG信号的血压检测方法" class="headerlink" title="基于PPG信号的血压检测方法"></a>基于PPG信号的血压检测方法</h1><p>目前基于PPG信号的无袖带式血压测量主要是依靠计算<strong>动脉脉搏波传导时间（</strong>PWTT<strong>）</strong>来估计血压。根据脉搏波沿动脉传播的速度与动脉血压之间的<strong>正相关关系</strong>，通过测量脉搏波波速间接地对血压进行估计。如果我们假设我们知道两点之间的距离，此时我们只要根据动脉中两点之间的传递时间（<strong>PTT</strong>）差就计算出来。</p>
-<h2 id="ECG-PPG"><a href="#ECG-PPG" class="headerlink" title="ECG+PPG"></a>ECG+PPG</h2><p><strong>心电图（electrocardiogram，ECG）</strong>是利用心电图机从体表记录心脏每一心动周期所产生的电活动变化图形的技术。由于其电信号的传到特性，与PPG信号相比可以<strong>忽略不记其的传递时间</strong>。<br>因此可以根据ECG信号上的<strong>R波波峰</strong>（左心室开始收缩将血液泵入主动脉）时间开始，检测波峰传递到身体特定部位的时间差来间接估算。下面对一些专业术语进行简单介绍：</p>
-<blockquote>
-<p><strong>PTT(Pulse Transit Time)</strong>:is the time that a pulse wave takes to travel between two different arterial points.</p>
+<h1 id="HTTP协议简介"><a href="#HTTP协议简介" class="headerlink" title="HTTP协议简介"></a>HTTP协议简介</h1><blockquote>
+<p>HTTP协议是HyperText Transfer Protocol（超文本传输协议）传输协议的缩写。说到超文本传输协议，首先我们需要解释下什么是==<strong>超文本</strong>==和==<strong>协议</strong>==。</p>
 </blockquote>
-<ul>
-<li>简单来说就是计算动脉中<strong>两个点之间</strong>波传输过程的<strong>时间差</strong>。</li>
-</ul>
+<p>​    <strong>==超文本(hypertext)==**之所以被称为超文本，是其可以通过超链接等方式指向别的如</strong>HTML、图片、音频和视频<strong>等不同于文本的文件；那什么又是==**协议</strong>==呢？网络协议是计算机之间为了实现网络通信而达成的一种“约定”或者”规则“，比方说传统的红灯停绿灯行。不同厂商的生产设备，以及不同操作系统组成的计算机之间，只有遵守这样一套相同的<strong>规则</strong>才可以确保运行和通信的正常。</p>
+<p>​    HTTP协议设计最初的目的是为了提供一种<strong>发布和接收HTML页面</strong>的方法，被用于在 Web 浏览器和网站服务器之间传递信息。</p>
 <hr>
+<h1 id="HTTP的工作原理"><a href="#HTTP的工作原理" class="headerlink" title="HTTP的工作原理"></a>HTTP的工作原理</h1><p>​    HTTP是一个基于<strong>TCP/IP通信协议</strong>来传递数据的协议I，其一般用<strong>于B/S架构</strong>，工作于为<strong>客户端(浏览器)**和</strong>服务器<strong>之间进行数据交互。<br>浏览器作为HTTP客户端通过</strong>URI<strong>向HTTP服务端即WEB服务器发送所有请求。<br>**典型的Web服务器</strong>有: Apache服务器 ，Nginx服务器，TomCat服务器等。<br>Web服务器根据接收到的<strong>请求</strong>后，向客户端发送<strong>响应</strong>信息。<br><strong>HTTP默认端口号为80</strong>，但是你也可以改为8080或者其他端口。</p>
+<h2 id="URI和URL的区别"><a href="#URI和URL的区别" class="headerlink" title="URI和URL的区别"></a>URI和URL的区别</h2><p><strong>URI</strong>：Uniform Resource Identifier 统一资源<strong>标识符</strong><br><strong>URN</strong> : Universal Resource Name    统一资源<strong>名称</strong><br><strong>URL</strong>：Uniform Resource Location 统一资源<strong>定位符</strong></p>
+<p>URI 是用来标示 一个<strong>具体的资源</strong>的，我们可以通过 URI 知道一个资源是什么。<br>URN是通过特定命名空间中的唯一名称或ID来标识资源。<br>URL 则是用来定位具体的资源的，标示了一个具体的资源位置。互联网上的每个文件都有一个唯一的URL。<br>URI、URN、URL关系如下图：<br><img src="/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/URIURL.png" alt="URI&amp;URL"><br><strong>举个通俗点的栗子</strong></p>
 <blockquote>
-<p>**PAT(Pulse Arrival Time)**：measured as the interval from the R-peak on an electrocardiogram (ECG) to the peripheral arrival of the pulse wave.</p>
+<p>我们把家庭小区位置比作URL，快递员只有8#410张三这样一个URN具体名称，才能将快递送到你的手上，而URI完成的就是这样的一个功能</p>
 </blockquote>
-<ul>
-<li>简单来说就是从心电图的<strong>R波峰值时刻</strong>，到脉搏波传导到体表<strong>特定部位</strong>时刻之间的时间。</li>
-</ul>
-<hr>
+<p><strong>实际场景下</strong></p>
 <blockquote>
-<p>PEP(Pre-ejection Period):is the time elapsed between the electrical depolarization of the left ventricle (QRS on the ECG) and the beginning of ventricular ejection and represents the period of left ventricular contraction with the cardiac valves closed.</p>
+<p>比方说我们访问<a target="_blank" rel="noopener" href="https://leetcode-cn.com/%EF%BC%8C%E6%A0%B9%E6%8D%AE%E8%BF%99%E4%B8%AA%E5%9C%B0%E5%9D%80%E6%88%91%E4%BB%AC%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%89%BE%E5%88%B0%E5%8A%9B%E6%89%A3%E7%9A%84%E7%BD%91%E9%A1%B5%E5%9C%B0%E5%9D%80">https://leetcode-cn.com/，根据这个地址我们就可以找到力扣的网页地址</a></p>
+<p>但是我们假如需要访问题库里具体的某一道题目呢？<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/%E5%85%B6%E4%B8%AD%E5%90%8E%E9%9D%A2%E7%9A%84problems/two-sum%E5%B0%B1%E6%98%AF%E5%AE%9A%E4%BD%8D%E7%9A%84URN%E5%90%88%E8%B5%B7%E6%9D%A5%E5%B0%B1%E6%98%AFURI%E7%9A%84%E6%A6%82%E5%BF%B5">https://leetcode-cn.com/problems/two-sum/其中后面的problems/two-sum就是定位的URN合起来就是URI的概念</a></p>
 </blockquote>
-<ul>
-<li><strong>射血前期</strong>，指<strong>血液注入左心室</strong>，左心室给出电信号开始去极化（==心电图上的QRS波群中的Q波==），到<strong>主动脉瓣膜打开</strong>将血液泵出的时间间隔，与上面两个量的关系为<strong>PAT=PTT+PEP</strong>；</li>
-<li><strong>PEP相关示意图</strong>下图上侧为ICG(I for impedance)信号，下侧为ECG信号<br><img src="/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/PEP.png" alt="PEP"></li>
+<h1 id="HTTP连接的特点"><a href="#HTTP连接的特点" class="headerlink" title="HTTP连接的特点"></a>HTTP连接的特点</h1><p><strong>==无连接==</strong><br>    无连接的含义是限制每次连接只处理一个请求。服务器<strong>处理完</strong>客户的请求，并收到客户的应答后，即==断开连接==。采用这种方式可以<strong>节省传输时间</strong>。<br>*<em>==无状态==**<br>    HTTP协议是无状态协议。无状态是指协议对于事务处理<strong>没有记忆能力</strong>。缺少状态意味着如果后续处理需要前面的信息，则它<strong>必须重传</strong>，这样可能导致每次连接传送的</em>数据量增大*。另一方面，在服务器不需要先前信息时它的<strong>应答就较快</strong>。(虽然目前有别的技术可以实现有状态的效果，但是HTTP协议就是没有状态的。)</p>
+<h1 id="什么是HTTPS协议？"><a href="#什么是HTTPS协议？" class="headerlink" title="什么是HTTPS协议？"></a>什么是HTTPS协议？</h1><p>​    由于HTTP协议以<strong>明文方式</strong>发送内容，不提供任何方式的数据加密，如果攻击者<strong>截取</strong>了Web浏览器和网站服务器之间的<strong>传输报文</strong>，就可以直接读懂其中的信息，因此，HTTP协议不适合传输一些敏感信息，比如：<strong>信用卡号、密码等支付信息</strong>。<br>　　为了解决HTTP协议的这一缺陷，需要就需要使用<strong>HTTPS协议（Hyper Text Transfer Protocol over SecureSocket Layer）安全套接字层超文本传输协议</strong>，为了数据传输的安全，HTTPS在HTTP的基础上加入了<strong>SSL/TLS</strong>协议，通过SSL证书来<strong>验证服务器的身份</strong>，并为浏览器和服务器之间的<strong>通信加密</strong>。
+　　</p>
+<h1 id="HTTP和HTTPS协议之间的区别"><a href="#HTTP和HTTPS协议之间的区别" class="headerlink" title="HTTP和HTTPS协议之间的区别"></a>HTTP和HTTPS协议之间的区别</h1><ul>
+<li>在HTTP中，URL以<strong>“ http：//”</strong>开头，而HTTPS的URL以<strong>“ https：//”</strong>开头</li>
+<li>HTTP使用端口号<strong>80</strong>进行通信，HTTPS使用端口号<strong>443</strong></li>
+<li>HTTP被认为是不安全的，而<strong>HTTPS是安全</strong>的</li>
+<li>HTTP在<strong>应用层</strong>工作，HTTPS在<strong>传输层</strong>工作</li>
+<li>如上所述，在HTTP中，不存在加密，而HTTPS中存在<strong>加密</strong></li>
+<li>HTTP不需要任何<strong>证书</strong>，HTTPS需要SSL证书</li>
 </ul>
-<hr>
-<h2 id="PPG-only"><a href="#PPG-only" class="headerlink" title="PPG only"></a>PPG only</h2><p>除此同时采集ECG和PPG两路信号进行血压估计以外，还可以利用在身体两个不同位置采集PPG信号来计算时间差，进行血压估计的方法；或是直接根据一路PPG的时域、频域和形态特征等来训练深度学习的网络来进行血压分类或估计的方法。<br>相关的特征可能有：原始脉搏波、脉搏波的一阶导、脉搏波的二阶导、脉搏波的频率、脉搏波的形态比例等参数。<br>写累了，下次再接着写。。敬请关注！</p>
-<h2 id="PPG血压相关数据集"><a href="#PPG血压相关数据集" class="headerlink" title="PPG血压相关数据集"></a>PPG血压相关数据集</h2><h2 id="相关研究或者产品形态"><a href="#相关研究或者产品形态" class="headerlink" title="相关研究或者产品形态"></a>相关研究或者产品形态</h2><h1 id="心血管相关医学知识"><a href="#心血管相关医学知识" class="headerlink" title="心血管相关医学知识"></a>心血管相关医学知识</h1><h1 id="相关参考文献和链接"><a href="#相关参考文献和链接" class="headerlink" title="相关参考文献和链接"></a>相关参考文献和链接</h1><p>射血周期PEP简介: <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=b1rYgxIF6ac&t=2s&ab_channel=BrittanyNackley">link</a>.<br>Richtek Technology 立錡科技ECG+PPG进行血压检测开发板展示: <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=rM3a4xL3d50&ab_channel=RichtekTechnology%E7%AB%8B%E9%8C%A1%E7%A7%91%E6%8A%80">link</a>.<br>Freescan 无袖带血压计产品: <a target="_blank" rel="noopener" href="https://searchingc.com/collections/freescan/">link</a>.<br>美国西北大学合作研究的Bold Diagnostic PPG血压计介绍: <a target="_blank" rel="noopener" href="https://searchingc.com/collections/freescan/">link</a>.</p>
+<h1 id="HTTPS的工作原理"><a href="#HTTPS的工作原理" class="headerlink" title="HTTPS的工作原理"></a>HTTPS的工作原理</h1><p>​    现在我们知道HTTPS能够<strong>加密信息</strong>，以免敏感信息被第三方获取，所以很多银行网站或涉及金钱等交易网站和电子邮箱等等安全级别较高的服务都会采用HTTPS协议。<br>客户端在使用HTTPS方式与Web服务器通信时有以下几个*步骤**，如图所示。<br><img src="https.gif" alt="https工作原理"><br>　　（1）客户使用https的URL访问Web服务器，要求与Web服务器建立SSL连接。</p>
+<p>　　（2）Web服务器收到客户端请求后，会将网站的证书信息（证书中包含公钥）传送一份给客户端。</p>
+<p>　　（3）客户端的浏览器与Web服务器开始协商SSL连接的安全等级，也就是信息加密的等级。</p>
+<p>　　（4）客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</p>
+<p>　　（5）Web服务器利用自己的私钥解密出会话密钥。</p>
+<p>　　（6）Web服务器利用会话密钥加密与客户端之间的通信。
+　　</p>
+<h1 id="HTTPS使用中的缺点"><a href="#HTTPS使用中的缺点" class="headerlink" title="HTTPS使用中的缺点"></a>HTTPS使用中的缺点</h1><p>​    前面一直在说HTTPS相较于HTTP的优点，那HTTPS是不是就没有缺点了？</p>
+<p>​    实时上并不是，首先由于HTTPS在建立连接时会<strong>经历多次握手</strong>交互会导致首次连接的时间增长，==延长网页的加载时间==；其次由于HTTPS还需要申请SSL证书，需要花费一笔==额外的费用==，并且费用随着证书的功能而增长；除此以外，由于加密和解密都需要<strong>耗费大量的运算能力</strong>，会==影响服务端==的CPU服务==性能==。</p>
 
       
 
@@ -250,7 +250,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">PPG，iPPG，血压，深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HTTPS</a>
         		</li>
       		
 		</ul>
@@ -306,7 +314,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/04/%E5%9F%BA%E4%BA%8EPPG&iPPG%E7%9A%84%E8%A1%80%E5%8E%8B%E6%A3%80%E6%B5%8B%E6%8A%80%E6%9C%AF----%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,18 +328,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/11/09/Android%20%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%89%E5%8D%93%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E5%AE%9E%E7%8E%B0%20Java/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android 最简单的安卓沉浸式状态栏实现 Java
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/11/04/LeeetCode%E5%88%B7%E9%A2%98%2013.%20Roman%20to%20Integer%20%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E5%9E%8B%20Java/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LeeetCode刷题 13. Roman to Integer 罗马数字转整型 Java</div>
+    <a href="/2020/11/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E9%9D%9E%E7%BA%BF%E6%80%A7(%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">机器学习-神经网络为什么需要非线性(激活函数)</div>
       <i class="icon-circle-right"></i>
     </a>
   
