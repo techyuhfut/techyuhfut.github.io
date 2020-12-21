@@ -6,26 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>计算机网络 快速搞懂http和https | Techyu&#39;s blog</title>
+  <title>Java-String对象初始化与字符串常量池 | Techyu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在浏览器的地址栏中，在浏览网站时我们偶尔会注意到不同网站的开头存在http：&#x2F;&#x2F;**或https：&#x2F;&#x2F;**两种他们之间有着什么区别？ HTTPS 是支持加密的 HTTP。两种协议的唯一区别是HTTPS 使用 TLS（SSL）来加密普通的 HTTP 请求和响应。因此，HTTPS 比 HTTP 安全得多。那么HTTP协议又是什么呢？">
+  <meta name="description" content="我们都知道在Java中，String对象有两种初始化方式：一种是直接进行字符串的赋值；另一种是通过new 关键字方式初始化。他们两者之间到底有什么区别呢？字符串常量池又是什么东西呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络 快速搞懂http和https">
-<meta property="og:url" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/index.html">
+<meta property="og:title" content="Java-String对象初始化与字符串常量池">
+<meta property="og:url" content="http://example.com/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/index.html">
 <meta property="og:site_name" content="Techyu&#39;s blog">
-<meta property="og:description" content="在浏览器的地址栏中，在浏览网站时我们偶尔会注意到不同网站的开头存在http：&#x2F;&#x2F;**或https：&#x2F;&#x2F;**两种他们之间有着什么区别？ HTTPS 是支持加密的 HTTP。两种协议的唯一区别是HTTPS 使用 TLS（SSL）来加密普通的 HTTP 请求和响应。因此，HTTPS 比 HTTP 安全得多。那么HTTP协议又是什么呢？">
+<meta property="og:description" content="我们都知道在Java中，String对象有两种初始化方式：一种是直接进行字符串的赋值；另一种是通过new 关键字方式初始化。他们两者之间到底有什么区别呢？字符串常量池又是什么东西呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/title.png">
-<meta property="og:image" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/URIURL.png">
-<meta property="og:image" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/https.gif">
-<meta property="article:published_time" content="2020-11-26T12:11:41.000Z">
-<meta property="article:modified_time" content="2020-11-26T14:05:05.989Z">
+<meta property="og:image" content="http://example.com/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/QQ%E5%9B%BE%E7%89%87202012212051719.png">
+<meta property="og:image" content="http://example.com/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/QQ%E6%88%AA%E5%9B%BE20201221211103.png">
+<meta property="og:image" content="http://example.com/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/QQ%E6%88%AA%E5%9B%BE20201221213721.png">
+<meta property="article:published_time" content="2020-12-21T09:23:33.000Z">
+<meta property="article:modified_time" content="2020-12-21T14:33:13.946Z">
 <meta property="article:author" content="Techyu">
-<meta property="article:tag" content="计算机网络">
-<meta property="article:tag" content="HTTPS">
-<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="String">
+<meta property="article:tag" content="字符串常量">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/title.png">
+<meta name="twitter:image" content="http://example.com/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/QQ%E5%9B%BE%E7%89%87202012212051719.png">
   
     <link rel="alternative" href="/atom.xml" title="Techyu&#39;s blog" type="application/atom+xml">
   
@@ -153,69 +153,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-计算机网络-快速搞懂http和https" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java-String对象初始化与字符串常量池" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      计算机网络 快速搞懂http和https
+      Java-String对象初始化与字符串常量池
     </h1>
   
 
         
-        <a href="/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/" class="archive-article-date">
-  	<time datetime="2020-11-26T12:11:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-26</time>
+        <a href="/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/" class="archive-article-date">
+  	<time datetime="2020-12-21T09:23:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在浏览器的地址栏中，在浏览网站时我们偶尔会注意到不同网站的开头存在<strong>http：//**或</strong>https：//**两种他们之间有着什么区别？</p>
-<p>HTTPS 是支持加密的 HTTP。两种协议的唯一区别是HTTPS 使用 TLS（SSL）来加密普通的 HTTP 请求和响应。因此，HTTPS 比 HTTP 安全得多。那么HTTP协议又是什么呢？</p>
+        <p>我们都知道在Java中，String对象有两种初始化方式：一种是直接进行<strong>字符串的赋值</strong>；另一种是通过<strong>new 关键字</strong>方式初始化。他们两者之间到底有什么区别呢？字符串常量池又是什么东西呢？</p>
+<hr>
 <a id="more"></a>
+<h1 id="String对象的初始化方式"><a href="#String对象的初始化方式" class="headerlink" title="String对象的初始化方式"></a>String对象的初始化方式</h1><p><strong>方式一：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;Hello&quot;</span>;<span class="comment">//直接赋值实例化，入池保存</span></span><br></pre></td></tr></table></figure>
+<p>此时我们来分析一下，该过程的内存模型如下：</p>
+<p><img src="/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/QQ%E5%9B%BE%E7%89%87202012212051719.png" alt="QQ图片202012212051719"><br>通过直接赋值的方式为String类对象实例化时，会在栈上生成<strong>对象的引用str</strong>，并会在堆上的字符串<strong>常量池上开辟一块内存</strong>，用来存放字符串常量。如果该字符串常量<em>已经存在</em>，<strong>下次就不会在开辟</strong>新的内存空间用来存储该常量，而是直接将新的对象引用指向该字符串在常量池里的位置。<br>类似于下面这种情况：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;Hello&quot;</span>;<span class="comment">//直接赋值实例化,入池保存</span></span><br><span class="line">String str2 = <span class="string">&quot;Hello&quot;</span>;<span class="comment">//常量池已存在，自动引用</span></span><br></pre></td></tr></table></figure>
+<p>str2就会<strong>直接引用</strong>str1在实例化时在字符串常量池创建的字符串对象。其内存模型如下：<br><img src="/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/QQ%E6%88%AA%E5%9B%BE20201221211103.png" alt="QQ截图20201221211103"></p>
+<p><strong>方式二：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="keyword">new</span> String(<span class="string">&quot;Hello&quot;</span>);<span class="comment">//new关键字构造方法实例化</span></span><br></pre></td></tr></table></figure>
+<p>由于使用<strong>关键字new</strong>就一定以为着会==开辟新的堆内存空间==，这块空间就是为了<em>传入构造方法的字符串数据</em>！<br>下面分析一下使用构造方法实例化的内存模型：</p>
+<p><img src="/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/QQ%E6%88%AA%E5%9B%BE20201221213721.png" alt="QQ截图20201221213721"><br>因为每个<em>字符串</em>都是<strong>String类的匿名对象<em>，所以字符串池中没有“Hello”字符串的话，会在常量池中新创建该对象，其</em>只负责实例化新的String类对象</strong>。而后用关键字new==开辟另一块堆空间==，将栈<strong>引用指向该新创建的String对象</strong>。而常量池中的“Hello”常量，如过内有其他引用指向就会成为垃圾空间，<em>等待被JVM的GC回收</em>。</p>
+<p><strong>总结：</strong>使用new关键字创建，会<strong>开辟两块内存空间</strong>，不仅会<em>浪费内存</em>，而且实际的内容总是存在==堆上新开辟的非池空间上==，常量池的空间会成为垃圾空间等待回收。</p>
+<h1 id="什么是字符串常量池"><a href="#什么是字符串常量池" class="headerlink" title="什么是字符串常量池"></a>什么是字符串常量池</h1><p>Java为了<strong>避免产生大量的字符串对象</strong>，设计了一个字符串池（String Pool）其本质是一个动态对象数组，通过<strong>直接赋值</strong>方式初始化创建的字符串对象<strong>都会存在于字符串池中</strong>，且字符串池中的字符串==不会重复==，以便可以被==共享使用==，<em>提高存储效率</em>。在Java中的常量池其实分两种。</p>
+<p><strong>1）静态常量池：</strong><br><em>是指程序（.class）文件在加载时候会将程序中保存的字符串、普通的常量、类和方法等信息，全部进行分配。</em></p>
+<p><strong>2） 运行时常量池：</strong><br><em>是指当一个和程序(.class)加载之后，有一些字符串内容是通过String对象的形式保存后在实现字符串连接处理，由于String对象的内容可以改变，所以此称为运行时常量池。</em></p>
+<p><strong>举个栗子：静态常量池</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String strA = <span class="string">&quot;HelloWorld&quot;</span>;<span class="comment">//开辟新对象并入池</span></span><br><span class="line">String strB = <span class="string">&quot;Hello&quot;</span>+<span class="string">&quot;World&quot;</span>;<span class="comment">//使用+进行字符串连接，由于所有都是常量，实际上表示一个字符串</span></span><br><span class="line">System.out.println(strA==strB);<span class="comment">//判断结果：true</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/title.png" alt="title pic"></p>
-<hr>
-<h1 id="HTTP协议简介"><a href="#HTTP协议简介" class="headerlink" title="HTTP协议简介"></a>HTTP协议简介</h1><blockquote>
-<p>HTTP协议是HyperText Transfer Protocol（超文本传输协议）传输协议的缩写。说到超文本传输协议，首先我们需要解释下什么是==<strong>超文本</strong>==和==<strong>协议</strong>==。</p>
-</blockquote>
-<p>​    <strong>==超文本(hypertext)==**之所以被称为超文本，是其可以通过超链接等方式指向别的如</strong>HTML、图片、音频和视频<strong>等不同于文本的文件；那什么又是==**协议</strong>==呢？网络协议是计算机之间为了实现网络通信而达成的一种“约定”或者”规则“，比方说传统的红灯停绿灯行。不同厂商的生产设备，以及不同操作系统组成的计算机之间，只有遵守这样一套相同的<strong>规则</strong>才可以确保运行和通信的正常。</p>
-<p>​    HTTP协议设计最初的目的是为了提供一种<strong>发布和接收HTML页面</strong>的方法，被用于在 Web 浏览器和网站服务器之间传递信息。</p>
-<hr>
-<h1 id="HTTP的工作原理"><a href="#HTTP的工作原理" class="headerlink" title="HTTP的工作原理"></a>HTTP的工作原理</h1><p>​    HTTP是一个基于<strong>TCP/IP通信协议</strong>来传递数据的协议I，其一般用<strong>于B/S架构</strong>，工作于为<strong>客户端(浏览器)**和</strong>服务器<strong>之间进行数据交互。<br>浏览器作为HTTP客户端通过</strong>URI<strong>向HTTP服务端即WEB服务器发送所有请求。<br>**典型的Web服务器</strong>有: Apache服务器 ，Nginx服务器，TomCat服务器等。<br>Web服务器根据接收到的<strong>请求</strong>后，向客户端发送<strong>响应</strong>信息。<br><strong>HTTP默认端口号为80</strong>，但是你也可以改为8080或者其他端口。</p>
-<h2 id="URI和URL的区别"><a href="#URI和URL的区别" class="headerlink" title="URI和URL的区别"></a>URI和URL的区别</h2><p><strong>URI</strong>：Uniform Resource Identifier 统一资源<strong>标识符</strong><br><strong>URN</strong> : Universal Resource Name    统一资源<strong>名称</strong><br><strong>URL</strong>：Uniform Resource Location 统一资源<strong>定位符</strong></p>
-<p>URI 是用来标示 一个<strong>具体的资源</strong>的，我们可以通过 URI 知道一个资源是什么。<br>URN是通过特定命名空间中的唯一名称或ID来标识资源。<br>URL 则是用来定位具体的资源的，标示了一个具体的资源位置。互联网上的每个文件都有一个唯一的URL。<br>URI、URN、URL关系如下图：<br><img src="/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/URIURL.png" alt="URI&amp;URL"><br><strong>举个通俗点的栗子</strong></p>
-<blockquote>
-<p>我们把家庭小区位置比作URL，快递员只有8#410张三这样一个URN具体名称，才能将快递送到你的手上，而URI完成的就是这样的一个功能</p>
-</blockquote>
-<p><strong>实际场景下</strong></p>
-<blockquote>
-<p>比方说我们访问<a target="_blank" rel="noopener" href="https://leetcode-cn.com/%EF%BC%8C%E6%A0%B9%E6%8D%AE%E8%BF%99%E4%B8%AA%E5%9C%B0%E5%9D%80%E6%88%91%E4%BB%AC%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%89%BE%E5%88%B0%E5%8A%9B%E6%89%A3%E7%9A%84%E7%BD%91%E9%A1%B5%E5%9C%B0%E5%9D%80">https://leetcode-cn.com/，根据这个地址我们就可以找到力扣的网页地址</a></p>
-<p>但是我们假如需要访问题库里具体的某一道题目呢？<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/">https://leetcode-cn.com/problems/two-sum/</a>    其中后面的problems/two-sum就是定位的URN合起来就是URI的概念</p>
-</blockquote>
-<h1 id="HTTP连接的特点"><a href="#HTTP连接的特点" class="headerlink" title="HTTP连接的特点"></a>HTTP连接的特点</h1><p><strong>==无连接==</strong><br>    无连接的含义是限制每次连接只处理一个请求。服务器<strong>处理完</strong>客户的请求，并收到客户的应答后，即==断开连接==。采用这种方式可以<strong>节省传输时间</strong>。<br>*<em>==无状态==**<br>    HTTP协议是无状态协议。无状态是指协议对于事务处理<strong>没有记忆能力</strong>。缺少状态意味着如果后续处理需要前面的信息，则它<strong>必须重传</strong>，这样可能导致每次连接传送的</em>数据量增大*。另一方面，在服务器不需要先前信息时它的<strong>应答就较快</strong>。(虽然目前有别的技术可以实现有状态的效果，但是HTTP协议就是没有状态的。)</p>
-<h1 id="什么是HTTPS协议？"><a href="#什么是HTTPS协议？" class="headerlink" title="什么是HTTPS协议？"></a>什么是HTTPS协议？</h1><p>​    由于HTTP协议以<strong>明文方式</strong>发送内容，不提供任何方式的数据加密，如果攻击者<strong>截取</strong>了Web浏览器和网站服务器之间的<strong>传输报文</strong>，就可以直接读懂其中的信息，因此，HTTP协议不适合传输一些敏感信息，比如：<strong>信用卡号、密码等支付信息</strong>。<br>　　为了解决HTTP协议的这一缺陷，需要就需要使用<strong>HTTPS协议（Hyper Text Transfer Protocol over SecureSocket Layer）安全套接字层超文本传输协议</strong>，为了数据传输的安全，HTTPS在HTTP的基础上加入了<strong>SSL/TLS</strong>协议，通过SSL证书来<strong>验证服务器的身份</strong>，并为浏览器和服务器之间的<strong>通信加密</strong>。
-　　</p>
-<h1 id="HTTP和HTTPS协议之间的区别"><a href="#HTTP和HTTPS协议之间的区别" class="headerlink" title="HTTP和HTTPS协议之间的区别"></a>HTTP和HTTPS协议之间的区别</h1><ul>
-<li>在HTTP中，URL以<strong>“ http：//”</strong>开头，而HTTPS的URL以<strong>“ https：//”</strong>开头</li>
-<li>HTTP使用端口号<strong>80</strong>进行通信，HTTPS使用端口号<strong>443</strong></li>
-<li>HTTP被认为是不安全的，而<strong>HTTPS是安全</strong>的</li>
-<li>HTTP在<strong>应用层</strong>工作，HTTPS在<strong>传输层</strong>工作</li>
-<li>如上所述，在HTTP中，不存在加密，而HTTPS中存在<strong>加密</strong></li>
-<li>HTTP不需要任何<strong>证书</strong>，HTTPS需要SSL证书</li>
-</ul>
-<h1 id="HTTPS的工作原理"><a href="#HTTPS的工作原理" class="headerlink" title="HTTPS的工作原理"></a>HTTPS的工作原理</h1><p>​    现在我们知道HTTPS能够<strong>加密信息</strong>，以免敏感信息被第三方获取，所以很多银行网站或涉及金钱等交易网站和电子邮箱等等安全级别较高的服务都会采用HTTPS协议。<br>客户端在使用HTTPS方式与Web服务器通信时有以下几个*步骤**，如图所示。<br><img src="https.gif" alt="https工作原理"><br>　　（1）客户使用https的URL访问Web服务器，要求与Web服务器建立SSL连接。</p>
-<p>　　（2）Web服务器收到客户端请求后，会将网站的证书信息（证书中包含公钥）传送一份给客户端。</p>
-<p>　　（3）客户端的浏览器与Web服务器开始协商SSL连接的安全等级，也就是信息加密的等级。</p>
-<p>　　（4）客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</p>
-<p>　　（5）Web服务器利用自己的私钥解密出会话密钥。</p>
-<p>　　（6）Web服务器利用会话密钥加密与客户端之间的通信。
-　　</p>
-<h1 id="HTTPS使用中的缺点"><a href="#HTTPS使用中的缺点" class="headerlink" title="HTTPS使用中的缺点"></a>HTTPS使用中的缺点</h1><p>​    前面一直在说HTTPS相较于HTTP的优点，那HTTPS是不是就没有缺点了？</p>
-<p>​    实时上并不是，首先由于HTTPS在建立连接时会<strong>经历多次握手</strong>交互会导致首次连接的时间增长，==延长网页的加载时间==；其次由于HTTPS还需要申请SSL证书，需要花费一笔==额外的费用==，并且费用随着证书的功能而增长；除此以外，由于加密和解密都需要<strong>耗费大量的运算能力</strong>，会==影响服务端==的CPU服务==性能==。</p>
+<p><strong>举个栗子：运行时常量池</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String strA = <span class="string">&quot;HelloWorld&quot;</span>;<span class="comment">//开辟新对象并入池</span></span><br><span class="line">String strB = <span class="string">&quot;World&quot;</span>;</span><br><span class="line">String strC = <span class="string">&quot;Hello&quot;</span>+strB;</span><br><span class="line"><span class="comment">//使用+进行字符串连接，动态拼凑时，由于strB是变量其内容运行时可能改变，所以其无法从常量池获取字符串引用</span></span><br><span class="line">System.out.println(strA==strC);<span class="comment">//判断结果：false</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="字符串常量池位置"><a href="#字符串常量池位置" class="headerlink" title="字符串常量池位置"></a>字符串常量池位置</h1><p><strong>JDK6.0及之前版本：</strong></p>
+<p>字符串常量池是放在Perm Gen区(也就是<strong>方法区</strong>)中；</p>
+<p><strong>在JDK7.0版本：</strong></p>
+<p>字符串常量池被移到了<strong>堆中</strong>了。</p>
+<h1 id="小思考"><a href="#小思考" class="headerlink" title="小思考"></a>小思考</h1><p>留下一些判断供大家思考，有疑惑的可以留言交流。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">String s2 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">String s3 = <span class="string">&quot;Hel&quot;</span> + <span class="string">&quot;lo&quot;</span>;</span><br><span class="line">String s4 = <span class="string">&quot;Hel&quot;</span> + <span class="keyword">new</span> String(<span class="string">&quot;lo&quot;</span>);</span><br><span class="line">String s5 = <span class="keyword">new</span> String(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">String s6 = s5.intern();</span><br><span class="line">String s7 = <span class="string">&quot;H&quot;</span>;</span><br><span class="line">String s8 = <span class="string">&quot;ello&quot;</span>;</span><br><span class="line">String s9 = s7 + s8;</span><br><span class="line"></span><br><span class="line">System.out.println(s1 == s2);  <span class="comment">// true</span></span><br><span class="line">System.out.println(s1 == s3);  <span class="comment">// true</span></span><br><span class="line">System.out.println(s1 == s4);  <span class="comment">// false</span></span><br><span class="line">System.out.println(s1 == s9);  <span class="comment">// false</span></span><br><span class="line">System.out.println(s4 == s5);  <span class="comment">// false</span></span><br><span class="line">System.out.println(s1 == s6);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -260,15 +251,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HTTPS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">字符串常量</a>
         		</li>
       		
 		</ul>
@@ -324,7 +315,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/21/Java-String%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -338,18 +329,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          计算机网络-HTTPS加密原理解析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/11/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E9%9D%9E%E7%BA%BF%E6%80%A7(%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0)/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">机器学习-神经网络为什么需要非线性(激活函数)</div>
+    <a href="/2020/12/17/Java-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%E8%AF%A6%E8%A7%A3-%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%EF%BC%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 参数传递问题详解 值传递还是引用传递？</div>
       <i class="icon-circle-right"></i>
     </a>
   
