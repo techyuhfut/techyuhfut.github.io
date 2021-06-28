@@ -6,35 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>计算机网络-HTTPS加密原理解析 | Techyu&#39;s blog</title>
+  <title>Archives | Techyu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​    在上一篇文章中，我们已经介绍了有关&#x3D;&#x3D;HTTP&#x3D;&#x3D;和&#x3D;&#x3D;HTTPS&#x3D;&#x3D;的有关区别，知道了HTTPS对HTTP进行了加密，提高了网络传输的安全性。但是HTTPS&#x3D;&#x3D;加密的原理&#x3D;&#x3D;又是怎样的呢？有的人认为是对称加密，另一些人又告诉你是是非对称加密。下面，就让我们一层一层抽丝剥茧看看HTTPS到底是如何运行的，以及他到底解决了哪些不安全的问题。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络-HTTPS加密原理解析">
-<meta property="og:url" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/index.html">
+  <meta name="description" content="程序员日常分享，学习、刷题、Java、深度学习">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Techyu&#39;s blog">
+<meta property="og:url" content="http://example.com/archives/page/3/index.html">
 <meta property="og:site_name" content="Techyu&#39;s blog">
-<meta property="og:description" content="​    在上一篇文章中，我们已经介绍了有关&#x3D;&#x3D;HTTP&#x3D;&#x3D;和&#x3D;&#x3D;HTTPS&#x3D;&#x3D;的有关区别，知道了HTTPS对HTTP进行了加密，提高了网络传输的安全性。但是HTTPS&#x3D;&#x3D;加密的原理&#x3D;&#x3D;又是怎样的呢？有的人认为是对称加密，另一些人又告诉你是是非对称加密。下面，就让我们一层一层抽丝剥茧看看HTTPS到底是如何运行的，以及他到底解决了哪些不安全的问题。">
+<meta property="og:description" content="程序员日常分享，学习、刷题、Java、深度学习">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/httptitle.jpg">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E6%98%8E%E6%96%87%E4%BC%A0%E8%BE%93%E6%80%BB.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%861.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%862.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%863.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%861.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%862.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E9%9D%9E%E5%AF%B9%E7%A7%B0.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E9%9D%9E%E5%AF%B9%E7%A7%B02.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/CA%E8%AE%A4%E8%AF%811.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/CA%E8%AE%A4%E8%AF%812.png">
-<meta property="og:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E8%AF%81%E4%B9%A6%E5%AE%89%E5%85%A8.png">
-<meta property="article:published_time" content="2020-11-27T03:14:01.000Z">
-<meta property="article:modified_time" content="2020-12-02T12:23:20.233Z">
 <meta property="article:author" content="Techyu">
-<meta property="article:tag" content="计算机网络">
-<meta property="article:tag" content="HTTPS">
-<meta property="article:tag" content="加密">
+<meta property="article:tag" content="Java、LeetCode、数据结构、机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/httptitle.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Techyu&#39;s blog" type="application/atom+xml">
   
@@ -162,273 +145,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-计算机网络-HTTPS加密原理解析" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      计算机网络-HTTPS加密原理解析
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2020-10-26T13:58:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-26</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/10/26/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
     </h1>
   
 
-        
-        <a href="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2020-11-27T03:14:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    在上一篇文章中，我们已经介绍了有关==<strong>HTTP</strong>==和==<strong>HTTPS</strong>==的有关区别，知道了HTTPS对HTTP进行了加密，提高了网络传输的安全性。但是HTTPS==<strong>加密的原理</strong>==又是怎样的呢？有的人认为是<em>对称加密</em>，另一些人又告诉你是是<em>非对称加密</em>。下面，就让我们一层一层抽丝剥茧看看HTTPS到底是如何运行的，以及他到底解决了哪些不安全的问题。</p>
-<a id="more"></a>
-
-<p><img src="httptitle.jpg" alt="title pic"></p>
-<h1 id="为什么需要加密？"><a href="#为什么需要加密？" class="headerlink" title="为什么需要加密？"></a>为什么需要加密？</h1><p><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E6%98%8E%E6%96%87%E4%BC%A0%E8%BE%93%E6%80%BB.png" alt="明文传输 pic"><br>    我们都知道http传输的内容是==<strong>明文传输</strong>==的，明文数据会经过<em>中间代理服务器</em>、<em>路由器</em>、<em>wifi热点</em>、<em>通信服务运营商</em>等多个物理节点，如果信息在传输过程中被==<strong>劫持</strong>==，传输的内容就完全==<strong>暴露</strong>==了，黑客甚至还可以==<strong>篡改</strong>==传输的信息且不被双方察觉。所以我们才需要对信息进行加密。最简单容易理解的就是**对称加密 **。</p>
-<h1 id="对称加密的原理和流程"><a href="#对称加密的原理和流程" class="headerlink" title="对称加密的原理和流程"></a>对称加密的原理和流程</h1><h2 id="什么是对称加密？"><a href="#什么是对称加密？" class="headerlink" title="什么是对称加密？"></a>什么是对称加密？</h2><p>​    对称加密存在一个==<strong>公共的密钥(pk)</strong>==，顾名思义它是使用<strong>相同的一个</strong>密钥pk对信息进行加密和解密，加密后的内容被称为<strong>密文</strong>无法直接读出其含有的数据信息。只有拿到密钥对密文进行<strong>解密</strong>才可以获得原始的数据内容，你可以把<strong>公钥</strong>理解成我们生活中用的<strong>钥匙</strong>，针对特定的<strong>锁（密文）</strong>只有特定的<strong>钥匙（公钥）</strong>才可以打开。</p>
-<h2 id="对称加密的流程"><a href="#对称加密的流程" class="headerlink" title="对称加密的流程"></a>对称加密的流程</h2><p><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%861.png" alt="title pic"><br>    对称加密的流程可如上图所示：</p>
-<ol>
-<li><p>首先客户端（Client）请求和服务端（Sever）建立连接；</p>
-</li>
-<li><p>服务端将加密算法和密钥发送给客户端；</p>
-</li>
-<li><p>客户端将自己需要发送的数据data经过密钥和加密算法得到密文X并传送给客户端；</p>
-</li>
-<li><p>客户端收到密文后再根据密钥和解密算法得到原始数据data；</p>
-</li>
-<li><p>服务端发送数据也是类似的过程。</p>
-</li>
-</ol>
-<h2 id="对称加密的不足"><a href="#对称加密的不足" class="headerlink" title="对称加密的不足"></a>对称加密的不足</h2><p><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%862.png" alt="title pic"><br>    这样经过对称加密之后，数据链路传输的一直都是<strong>密文X</strong>，是不是说明黑客此时窃取密文X之后就无法获得双方传输的原始数据了？</p>
-<p>![title pic](<img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%863.png" alt="title pic"><br>其实不然，如果加密<em>算法</em>和<strong>密钥</strong>只有通信双方<strong>各自持有</strong>，且<strong>没有别人知道</strong>，这两方的通信安全当然是可以被保证的（除非密钥被破解）。所以重点的问题就是这个<strong>密钥如何传输让双方知晓</strong>，同时<strong>不可能被别人知道</strong>。<br>    纵观对称加密的流程我们可以发现，在双方建立连接，服务端还是需要把协商的<strong>密钥</strong>和<strong>加密算法</strong>通过网络<strong>传输给客户端</strong>。如何保证这个传输的过程不会被窃取？况且一般情况下，服务端不可能为数以亿计的客户端单独制定密钥和加密算法病并存储，这在硬件层面可能就超出服务端的存储能力。如果大家都是相同的密钥和加密算法，黑客就可以在一开始<em>伪装成</em>一个==<strong>合法的客户端</strong>==请求和服务端建立连接，在获取服务端的<strong>加密算法f</strong>和<strong>密钥pk</strong>之后，针对窃取到的<em>密文X</em>，就可以轻而易举的破解了。这时候你可能要问怎么办才能让双方的加密算法和密钥不会被窃取呢？这就需要到==<strong>非对称加密</strong>==了。</p>
-<h1 id="非对称加密的原理和流程"><a href="#非对称加密的原理和流程" class="headerlink" title="非对称加密的原理和流程"></a>非对称加密的原理和流程</h1><h2 id="什么是非对称加密？"><a href="#什么是非对称加密？" class="headerlink" title="什么是非对称加密？"></a>什么是非对称加密？</h2><p>​    通过前文，我们了解到如果可以保证加密的<strong>密钥</strong>和<strong>算法</strong>，<strong>不会被窃取</strong>，就可以保证传输数据的安全不会被解密。非对称加密是怎么解决密钥被窃取的问题的呢？非对称加密需要一对==公钥（pk）==和==私钥（sk）==，如果用<strong>公钥</strong>对数据进行<strong>加密</strong>，只有用对应的<strong>私钥</strong>才能<strong>解密</strong>。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。</p>
-<h2 id="非对称加密的流程"><a href="#非对称加密的流程" class="headerlink" title="非对称加密的流程"></a>非对称加密的流程</h2><p>​    由于非对称加密，利用公钥进行加密的只能私钥进行解密，私钥加密的只能公钥解密。所以其存在的加密和解密方式如下：</p>
-<blockquote>
-<p>f(data,pk)=Y<br>f(Y,sk)=data<br>f(data,sk)=Y’<br>f(Y’,pk)=data</p>
-</blockquote>
-<p><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%861.png" alt="title pic"><br>    其基本数据传输的过程是：</p>
-<ol>
-<li><p>服务端生成一对密钥并将公钥公开；</p>
-</li>
-<li><p>客户端需要向服务端发送信息时，使用该公钥pk对机密信息data进行加密后得到密文Y发送给服务端；</p>
-</li>
-<li><p>服务端再用自己私钥sk对加密后的信息进行解密得到原始数据data。</p>
-</li>
-</ol>
-<blockquote>
-<p>这样的话，由于私钥sk只有服务端有，且没有传输过不会存在被窃取的可能，也就是对客户端发送的密文，只有服务端可以进行解密不存在破解的可能。</p>
-</blockquote>
-<h2 id="非对称加密的不足"><a href="#非对称加密的不足" class="headerlink" title="非对称加密的不足"></a>非对称加密的不足</h2><p><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%862.png" alt="title pic"><br>    这时候大家停下思考一下，如果<strong>服务端</strong>需要给客户端<strong>发送信息</strong>该<strong>如何加密</strong>呢？如果选择第三项的加密方式，服务端利用<strong>公钥pk</strong>对数据进行==加密==，可是客户端根本<strong>没有私钥sk</strong>，也就是对密文Y‘根本==无法解密==！这时你可能会说，那服务端利用<strong>私钥sk</strong>进行加密，那客户端不就可以利用他有的<strong>公钥pk</strong>==解密==了么？可是==pk是公开的==，其实相当于只要黑客获取到了服务端利用私钥sk加密的密文，黑客就可以对其进行解密。也就是说，非对称加密虽然可以保证<strong>客户端给服务端发送数据的安全性</strong>，==却无法保证服务端向客户端发送数据安全性==。那如何确保双向数据传输的安全性呢？我们可以采用对称加密和非对称加密相结合的方式。</p>
-<h1 id="对称加密-非对称加密"><a href="#对称加密-非对称加密" class="headerlink" title="对称加密+非对称加密?"></a>对称加密+非对称加密?</h1><p>​    从前面的介绍我们可以知道，==对称加密==只要<strong>密钥pk</strong>同时让<strong>双方知晓</strong>，且<strong>不会被其他人知道</strong>就可以保证通信的==安全性==；==非对称加密==是<strong>可以确保客户端到服务端发送请求的时候是安全的</strong>，只是<strong>服务端给客户端发送请求的时候是不安全的</strong>，两者都有一定的优势，那么我们能不能将两者的又是<strong>结合起来</strong>呢？</p>
-<h2 id="对称-非对称加密流程"><a href="#对称-非对称加密流程" class="headerlink" title="对称+非对称加密流程"></a>对称+非对称加密流程</h2><p>​    由前分析可知，我们可以先利用<strong>非对称加密的方式</strong>，在客户端和服务端之间协商出==一组临时的key==，之后再<em>利用这组key</em>进行==对称加密==的算法。具体流程如下：<br><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E9%9D%9E%E5%AF%B9%E7%A7%B0.png" alt="title pic"></p>
-<ol>
-<li>首先服务端将自己的公钥pk和加密算法传递给客户端</li>
-<li>客户端生成一个随机的key根据获得的算法和公钥对其加密获得Y</li>
-<li>服务端对获得的密文Y用自己的私钥进行解密获得和客户端协商的对称加密算法的密钥key<blockquote>
-<p>这样由于非对称加密的性质，我们可以知道对于客户端公钥pk进行加密的临时key，只有服务端的私钥sk才可以解密出原始数据key，由于这个key是客户端随机生成的，其他客户端或黑客是没办法知道的，又由于黑客无法破解私钥，所以黑客无论如何都无法进行破解。这样我们就确保了对称加密的key，只有客户端自己本身和服务端可以获得。</p>
-</blockquote>
-</li>
-<li>双方获得临时制定的对称加密key之后，服务端可能还会给客户端回个ok之类的指令以示获得了对称加密的key</li>
-<li>之后双方使用key加密进行通信，由于黑客无法获得原始key就算进行截获也无法破解。</li>
-</ol>
-<h2 id="对称-非对称的不足"><a href="#对称-非对称的不足" class="headerlink" title="对称+非对称的不足"></a>对称+非对称的不足</h2><p>​    当前可以看到，这种==对称+非对称加密==的方式<strong>已经非常安全</strong>了，但是我们的黑客也特别地聪明。下面我们来看看下图所示的例子：<br><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E5%AF%B9%E7%A7%B0%E9%9D%9E%E5%AF%B9%E7%A7%B02.png" alt="title pic"></p>
-<ol>
-<li>由于该加密方式第一步需要客户端向服务端请求密钥等信息，假如此时黑客就进行了拦截，黑客将自己的公钥pk’和算法f‘发送给客户端</li>
-<li>并且黑客也假装自己是个良民去从客户端申请公钥pk和算法f</li>
-<li>客户端拿到黑客的公钥pk’和算法f’之后，其实是不知道从哪里获得的，还以为是服务端发送的。此时，他将自己随机生成的key用pk‘和算法f’进行加密获得密文X’，传送给黑客</li>
-<li>黑客获得X‘之后可以根据本地的私钥sk’对其解密获得对称加密的密钥key，此时可能黑客向客户端回个ok，确认收到密钥。之后黑客和客户端之间就使用这个key进行对称加密的传输</li>
-<li>同时黑客可能拿着收到的key，用他从服务端请求的密钥pk和算法f对其加密，生成密文X，服务端收到X之后，利用本地的私钥sk对其解密获得黑客和服务端之间对称加密的密钥key，之后服务端可能给黑客回个ok，之后他们两者使用约定好的key进行对称加密传输</li>
-<li>黑客在客户端和服务端之间一直充当中间人，也就是说黑客不光可以窃取你和服务器的所有通信数据，甚至还可以对数据进行修改而这一切客户端和服务端都可以完全不知情。</li>
-</ol>
-<p>那这是不是就很难办了，似乎我们已经没有办法确保数据的安全传输了。我们该如何解决呢？那就是引入==证书CA(Certificate Authority)认证==。</p>
-<h1 id="CA认证的具体流程"><a href="#CA认证的具体流程" class="headerlink" title="CA认证的具体流程"></a>CA认证的具体流程</h1><p>​    分析上面问题导致的原因可知，主要是我们不能通过拿到的<strong>公钥</strong>分清到底对方是==黑客==还是==服务端==，那么我们就引入一个<strong>CA认证的流程</strong>，只有<strong>通过CA机构认证的公钥</strong>我们才认为是==好的公钥==，其他的公钥我们都认为是<em>黑客的公钥</em>，也就是确认了对方的身份安全。</p>
-<h1 id="CA认证的工作流程"><a href="#CA认证的工作流程" class="headerlink" title="CA认证的工作流程"></a>CA认证的工作流程</h1><p><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/CA%E8%AE%A4%E8%AF%811.png" alt="title pic"><br>    在使用CA认证时，我们可以发现除了客户端和服务端还多了一个<strong>CA认证的机构</strong>，服务端本地的公钥私钥分别叫做<strong>pk，sk</strong>，并且CA端也会有个本地的公钥和私钥我们分别称为<strong>cpk，csk</strong>。</p>
-<ol>
-<li>当客户端向服务端发起连接请求时，服务端会将本次通信的公钥发送给CA机构</li>
-<li>CA机构对获得的密钥pk会用自己的私钥csk对其进行加密f(pk,csk)=licence，返回一个licence</li>
-<li>服务端将获得的lic传送给客户端，客户端只要用cpk就可以对lic进行解密获得客户端的pk，之后再使用pk在客户端和服务端之间进行对称加密就饿可以保证通信的安全性。<blockquote>
-<p>那么此时，可以停下来考虑一下如何获取cpk呢，你可能想到的时客户端直接向CA机构发送请求获取不行么？但是仔细一思考就会发现，请求cpk的过程又会涉及到中间人代理攻击的可能性，如下图所示：</p>
-</blockquote>
-</li>
-</ol>
-<p><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/CA%E8%AE%A4%E8%AF%812.png" alt="title pic"><br>    为了避免去请求cpk的过程，我们可以直接把<strong>cpk</strong>==写死在我们的操作系统里==。所以实际上我们的操作系统内时内置了大量的CA机构的公钥的。这样就可以完全的确保pk的安全性。</p>
-<p>下面我们再来分析一下，这时候的中间人攻击会怎么样：</p>
-<blockquote>
-<p>首先假如连接初始时，黑客就进行了介入会怎么样？客户端收到的lic就是没有经过CA机构认证过的lic，我们打的浏览器就会弹出如下的证书不安全提醒。</p>
-</blockquote>
-<p><img src="/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/%E8%AF%81%E4%B9%A6%E5%AE%89%E5%85%A8.png" alt="title pic"></p>
-<blockquote>
-<p>那再假设客户端和服务端使用商议后的公钥pk进行对称加密传输时，黑客窃取到密文会因为获取不到原始的密文pk而无法破解。</p>
-</blockquote>
-<p>至此，我们基本已经弄清楚了HTTPS的加密原理，是结了==对称加密、非对称加密和CA认证==这样一系列的安全措施而保证的通信安全。但是本文只是对相关原理进行的介绍，具体的交互和确认流程要比本文所述的更复杂一些，感兴趣的同学可以自行查阅相关介绍。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wechat.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">新手向</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HTTPS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">加密</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-HTTPS%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/12/17/Java-%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%E8%AF%A6%E8%A7%A3-%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%EF%BC%9F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java 参数传递问题详解 值传递还是引用传递？
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/11/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BF%AB%E9%80%9F%E6%90%9E%E6%87%82http%E5%92%8Chttps/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">计算机网络 快速搞懂http和https</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -452,8 +229,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
